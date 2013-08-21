@@ -16,8 +16,9 @@ gem 'jquery-ui-rails'
 gem "watu_table_builder", :require => "table_builder"
 gem 'prawn_rails'
 
+gem 'sass-rails',   '~> 3.2.3'
 group :assets do
-      gem 'sass-rails',   '~> 3.2.3'
+      
       gem 'coffee-rails', '~> 3.2.1'
       gem 'uglifier', '>= 1.0.3'
       gem 'bootstrap-sass'
