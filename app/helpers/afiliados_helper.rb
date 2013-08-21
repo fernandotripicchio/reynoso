@@ -1,0 +1,2 @@
+module AfiliadosHelper
+end

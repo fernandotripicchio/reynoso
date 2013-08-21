@@ -1,0 +1,7 @@
+<div id="edit_form" class="form_project">  	
+	<legend>Profile </legend>
+  	<%= simple_form_for @user ,  :html => { :class => "form-horizontal" } do |f| %>
+  	<%= render :partial => "form", :locals => {:f => f}%>
+    <%= f.submit "Save", :class => "btn btn-primary btn-form"%>
+    <% end %>
+</div>

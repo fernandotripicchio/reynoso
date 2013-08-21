@@ -1,0 +1,29 @@
+<legend>Usuarios</legend>
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th class="span2">ID</th>
+			<th>Login</th>
+			<th>Nombre</th>
+			<th>Email</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+    <tbody>
+		<% @users.each do |user| %>
+		    <tr  user-id="<%=user.id%>">
+		    	<td><%= user.id %></td>
+		    	<td><%= user.login %></td>
+		    	<td><%= user.full_name %></td>
+		    	<td><%= user.email %></td>
+		    	<td>
+		    		<%= link_to "Editar", edit_user_path(user), :class => "btn btn-primary" %>
+		    		<%= link_to "Eliminar", user_path(user), :method => :delete,:class => "btn btn-danger" ,:confirm => "Esta seguro que desea eliminar ?" %>
+
+		    	</td>
+		    </tr>  
+		<% end %>
+	</tbody>
+</table>
+</div>

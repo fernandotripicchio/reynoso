@@ -1,0 +1,103 @@
+// Place all the styles related to the UserSessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+ /* Override some defaults */
+ .btn-form { 
+      float: right; 
+      margin-right : 50px;
+ }
+ 
+ .btn-right { 
+      float: right; 
+  
+ }
+ 
+.div_buttons {
+     padding-top: 15px;
+     padding-left: 0px;
+     padding-bottom: 10px;
+}
+
+.container_form {
+     border: 1px solid #eeeeee; 
+     padding-top: 20px;
+     padding-bottom: 25px;
+     padding-left: 25px;
+     padding-right: 30px;   
+}
+
+.textCenter{
+     text-align: center !important;
+}
+
+.sizeStaticText {
+    width: 95%;
+}
+.staticText {
+    font-size: 1.0em !important;
+  
+}
+
+.table-centered {
+   margin: 0 auto !important;
+   float: none !important;
+}
+
+.popover{
+    max-width: 500px !important;
+}
+
+
+.noTopBorder{
+    border-top:1px solid transparent!important;
+}
+
+.noMargin{
+  
+}
+
+.column100{
+   width: 99%;
+}
+
+.icon-plus-sign, .icon-remove-sign {
+   background-position: 0px !important;
+   background-image: none;
+}
+
+
+.logged_user{
+  color: #0088cc !important;  
+}
+
+.navbar .brand {
+   float: left;
+   display: block;
+   padding: 8px 20px 12px 20px;
+   margin-left: -20px;
+   font-size: 20px;
+   font-weight: 200;
+   line-height: 1;
+   color: #ffffff;
+}
+
+.form-horizontal .controls {
+   margin-left: 100px !important;
+   float: left;
+}
+
+.form-horizontal .control-label {
+   float: left;
+   width: 120px;
+   padding-top: 5px;
+   text-align: right;
+}
+
+.form-horizontal label{
+  width: 120px !important;
+  float: left;
+}
+ 
+ .controls {
+     margin-left: 10px !important;
+ } 
