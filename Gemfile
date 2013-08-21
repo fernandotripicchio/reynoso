@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.12'
-#gem "mysql", "~> 2.9.1"
-gem 'mysql2'
-gem "activerecord-mysql-adapter"
+gem 'pg'
 gem 'jquery-rails'
 gem 'authlogic'
 gem 'simple_form'
