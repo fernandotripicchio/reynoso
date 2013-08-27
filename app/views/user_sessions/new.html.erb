@@ -4,9 +4,9 @@
   <div id="login_form" class="login">
   	<fieldset>  	
   	<%= simple_form_for @user_session, :url => {:action => "create"}, :html => { :class => "login form-horizontal" } do |f| %>
-	   <%= f.input :login, :label => false, :placeholder => "email",  :error => false , :input_html => { class: 'input-login' }  %>
+	   <%= f.input :login, :label => false, :placeholder => "login",  :error => false , :input_html => { class: 'input-login' }  %>
 	   <%= f.input :password, :label => false, :placeholder => "password", :error => false ,  :input_html => { class: 'input-login' }  %>
-       <%= link_to "Olvidaste Password?" , "#"%>       
+       <%= link_to "Olvidaste tu password?" , "#"%>       
        <div>
        <%= f.submit "Ingresar" , :class => "btn btn-primary btn-form" %>
        <%= f.input :remember_me, :label => "Recordarme", as: :boolean   %>

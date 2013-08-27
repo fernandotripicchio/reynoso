@@ -1,4 +1,5 @@
 class SuppliersController < ApplicationController
+  before_filter :current_user  
   # GET /suppliers
   # GET /suppliers.json
   def index
