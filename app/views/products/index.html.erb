@@ -1,0 +1,30 @@
+<legend>Productos</legend>
+
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+	<tr>
+	    <th>Producto</th>
+	    <th>Precio</th>
+	    <th>IVA</th>
+	    <th>Ganancia</th>
+	    <th></th>
+  </tr>
+</thead>
+<tbody>
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.name %></td>
+    <td>$ <%= product.price %></td>
+    <td><%= product.iva %> %%</td>
+    <td> <%= product.profit %> %</td>
+    <td><%= link_to 'Editar', edit_product_path(product), :class => "btn btn-primary"  %></td>
+    <td><%= link_to 'Borrar', product, method: :delete, data: { confirm: 'Está seguro que desea borrar el producto?' }, :class => "btn btn-danger"  %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<br />
+
+

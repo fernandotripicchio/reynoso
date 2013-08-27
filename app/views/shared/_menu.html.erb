@@ -11,6 +11,23 @@
           <div class="nav-collapse collapse">
           	<ul class="nav">
 	              <li class="dropdown">
+	                 <%=link_to ("Productos <b class='caret'></b>").html_safe(), users_path, :class => "dropdown-toggle", "data-toggle" => "dropdown"%>	
+	                  <ul class="dropdown-menu">
+	                     <li><%=link_to "Listado", products_path %></li>
+	                     <li><%=link_to "Nuevo Producto", new_product_path%></li>
+	                  </ul>
+	               </li> 
+
+	              <li class="dropdown">
+	                 <%=link_to ("Proveedores <b class='caret'></b>").html_safe(), suppliers_path, :class => "dropdown-toggle", "data-toggle" => "dropdown"%>	
+	                  <ul class="dropdown-menu">
+	                     <li><%=link_to "Listado", suppliers_path %></li>
+	                     <li><%=link_to "Nuevo Proveedor", new_supplier_path%></li>
+	                  </ul>
+	               </li> 
+	               
+          		
+	              <li class="dropdown">
 	                 <%=link_to ("Usuarios <b class='caret'></b>").html_safe(), users_path, :class => "dropdown-toggle", "data-toggle" => "dropdown"%>	
 	                  <ul class="dropdown-menu">
 	                     <li><%=link_to "Listado", users_path %></li>

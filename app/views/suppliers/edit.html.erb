@@ -1,0 +1,9 @@
+<div id="edit_form" class="form_project">  	
+	<legend>Editar Proveedor </legend>
+  	<%= simple_form_for @supplier ,  :html => { :class => "form-horizontal" } do |f| %>
+  	<%= render :partial => "form", :locals => {:f => f}%>
+  	<hr />
+    <%= link_to "Cancelar", supplier_path, :class => "btn btn-secundary btn-form"%>
+    <%= f.submit "Actualizar", :class => "btn btn-primary btn-form"%>
+    <% end %>
+</div>
