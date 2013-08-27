@@ -18,7 +18,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session]) 
     respond_to do |format|
       if @user_session.save
-        format.html { redirect_to(:users, :notice => 'Bienvenido !') }
+        format.html { redirect_to(:products, :notice => 'Bienvenido !') }
         format.xml  { render :xml => @user_session, :status => :created, :location => @user_session }
       else
          flash[:error] = "El login o el password no son correctos" 
