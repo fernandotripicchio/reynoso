@@ -1,0 +1,11 @@
+<div id="edit_form" class="form_user">  	
+	<legend>Nueva Sucursal:</legend>
+	<div class="row-horizontal">
+	  	<%= simple_form_for @branch ,  :html => { :class => "form-horizontal" } do |f| %>
+	  	<%= render :partial => "form", :locals => {:f => f}%>
+	  	<hr />
+	    <%= link_to "Cancelar", branches_path, :class => "btn btn-secundary btn-form"%>
+	    <%= f.submit "Guardar", :class => "btn btn-primary btn-form"%>
+	    <% end %>
+	</div>
+</div>

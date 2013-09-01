@@ -1,4 +1,10 @@
 Profe::Application.routes.draw do
+  resources :stocks
+
+
+  resources :branches
+
+
   resources :suppliers
 
 
