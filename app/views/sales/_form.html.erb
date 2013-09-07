@@ -1,0 +1,13 @@
+<fieldset>	
+	<%= f.input :date_sale, :placeholder => "fecha", :label => "Fecha:", :input_html => {class: 'input-medium'   }  %>
+    <%= f.association :client, :collection => Client.all(order: 'name'), :prompt => "Seleccione un Cliente", :label => "Cliente:" %>	
+    <%= f.input :payment, 
+                :collection => [['efectivo', 'Efectivo'], ['tarjeta', 'Tarjeta']], 
+                :label_method => :last, 
+                :as => :radio_buttons,
+                :label => "Forma de Pago:", 
+                :checked => 'efectivo' %>
+          
+    
+	<%= f.input :comments, :as => :text, :placeholder => "Observaciones",:label => "Observaciones:",  :input_html => { class: 'input-xxlarge'  }  %>    
+</fieldset>   

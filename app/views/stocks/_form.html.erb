@@ -1,17 +1,10 @@
-<%= form_for(@stock) do |f| %>
-  <% if @stock.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
-
-      <ul>
-      <% @stock.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<fieldset>	
+	<%= f.association :product, :collection => Product.all(order: 'name'), :prompt => "Seleccione un producto", :label => "Producto" %>
+    <%= f.association :branch, :collection => Branch.all(order: 'name'), :prompt => "Seleccione una Sucursal", :label => "Sucursal" %>	
+    <%= f.association :supplier, :collection => Supplier.all(order: 'name'), :prompt => "Seleccione un Proveedor", :label => "Proveedor" %>
+    <% if editar %>
+       <%= f.input :kind_movement, :collection => ["Incremento", "Descuento"], :label => "Tipo:"  %>    
+    <% end %>	
+	<%= f.input :size, :placeholder => "cantidad",:label => "Cantidad:",  :input_html => { class: 'input-small'  }  %>
+    
+</fieldset>  

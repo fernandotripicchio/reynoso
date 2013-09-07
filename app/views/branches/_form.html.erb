@@ -1,5 +1,8 @@
 <fieldset>	
-	<%= f.input :name, :placeholder => "localidad", :label => "Localidad:", :input_html => {   }  %>
-	<%= f.input :name, :placeholder => "direccion", :label => "Dirección:", :input_html => {   }  %>	
-	<%= f.input :email, :placeholder => "email",:label => "Email:",  :input_html => {   }  %>
+	<%= f.input :name, :placeholder => "nombre", :label => "Nombre:", :input_html => {:class => "input-xxlarge"  }  %>
+	<%= f.input :city, :placeholder => "ciudad", :label => "Ciudad:", :input_html => {:class => "input-xxlarge"  }  %>
+	<%= f.input :address, :placeholder => "direccion", :label => "Dirección:", :input_html => { :class => "input-xxlarge"   }  %>
+    <%= f.input :phone, :placeholder => "telefono", :label => "Telefono:", :input_html => { :class => "input-xxlarge"   }  %>		
+	<%= f.input :email, :placeholder => "email",:label => "Email:",  :input_html => {  :class => "input-medium"  }  %>
+	<%= f.input :comments, :as => :text,:placeholder => "Observaciones",:label => "Observaciones:",  :input_html => { :class => "input-xxlarge"   }  %>
 </fieldset> 

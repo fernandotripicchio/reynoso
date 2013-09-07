@@ -1,0 +1,27 @@
+<legend>Clientes</legend>
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+	  <tr>
+	    <th>Nombre</th>
+	    <th>Dirección</th>
+	    <th>Télefono</th>
+	    <th>Email</th>
+	    <th>Provincia</th>    
+	  </tr>
+</thead>
+<tbody>
+<% @clients.each do | client | %>
+  <tr>
+  	<td><%= client.name %></td>
+  	<td><%= client.address %></td>
+  	<td><%= client.phone %></td>
+  	<td><%= client.email %></td>
+  	<td><%= client.province %></td>
+    <td><%= link_to 'Editar', edit_client_path(client) , :class => "btn btn-primary"%></td>
+    <td><%= link_to 'Borrar', client, method: :delete, data: { confirm: 'Está seguro que desea borrar el cliente?' }, :class => "btn btn-danger" %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+

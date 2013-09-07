@@ -1,0 +1,27 @@
+<legend>Listado de Ventas</legend>
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+	  <tr>
+	  	<th>Nro</th>
+	    <th>Fecha</th>
+	    <th>Cliente</th>
+	    <th>Forma de Pago</th>
+	    <th>Valor</th>
+   
+	  </tr>
+</thead>
+<tbody>
+<% @sales.each do | sale | %>
+  <tr>
+  	<td><%= sale.id %></td>
+  	<td><%= sale.date_sale %></td>
+  	<td><%= ( !sale.client.blank? ) ? sale.client.name : "" %></td>
+  	<td><%= sale.payment %></td>
+    <td><%= link_to 'Detalle', "#", :class => "btn btn-primary"%></td>
+    <td><%= link_to 'Anular', sale, method: :delete, data: { confirm: 'Está seguro que desea anular la venta?' }, :class => "btn btn-danger" %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+

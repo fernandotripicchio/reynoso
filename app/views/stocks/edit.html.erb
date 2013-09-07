@@ -1,6 +1,12 @@
-<h1>Editing stock</h1>
+<div id="edit_form" class="form_user">  	
+	<legend>Editar Stock:</legend>
+	<div class="row-horizontal">
+	  	<%= simple_form_for @stock, :url => actualizar_stock_path ,  :html => { :class => "form-horizontal" } do |f| %>
+	  	<%= render :partial => "form", :locals => {:f => f, :editar => true}%>
+	  	<hr />
+	  	<%= link_to "Cancelar", stocks_path, :class => "btn btn-secundary btn-form"%>
+	    <%= f.submit "Guardar", :class => "btn btn-primary btn-form"%>
+	    <% end %>
+	</div>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @stock %> |
-<%= link_to 'Back', stocks_path %>

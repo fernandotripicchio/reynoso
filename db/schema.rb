@@ -11,13 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130901163220) do
+ActiveRecord::Schema.define(:version => 20130907204111) do
 
   create_table "branches", :force => true do |t|
     t.string   "name"
     t.boolean  "active"
     t.string   "email"
     t.string   "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "phone"
+    t.string   "comments"
+    t.string   "city"
+  end
+
+  create_table "clients", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "phone"
+    t.string   "address"
+    t.string   "email"
+    t.string   "province"
+    t.string   "zip_code"
+    t.text     "comments"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -31,13 +46,34 @@ ActiveRecord::Schema.define(:version => 20130901163220) do
     t.datetime "updated_at",                               :null => false
   end
 
+  create_table "sale_items", :force => true do |t|
+    t.integer  "sale_id"
+    t.integer  "product_id"
+    t.integer  "branch_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sales", :force => true do |t|
+    t.date     "date_sale"
+    t.integer  "branch_id"
+    t.integer  "client_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.text     "comments"
+    t.string   "payment"
+  end
+
   create_table "stocks", :force => true do |t|
     t.integer  "size"
     t.integer  "branch_id"
     t.integer  "product_id"
-    t.decimal  "disccount",  :precision => 8, :scale => 2
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.decimal  "disccount",     :precision => 8, :scale => 2
+    t.datetime "created_at",                                                            :null => false
+    t.datetime "updated_at",                                                            :null => false
+    t.integer  "suplier_id"
+    t.string   "kind_movement",                               :default => "Incremento"
+    t.integer  "supplier_id"
   end
 
   create_table "suppliers", :force => true do |t|

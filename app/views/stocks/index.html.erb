@@ -1,21 +1,21 @@
-<h1>Listing stocks</h1>
-
-<table>
+<legend>Stock</legend>
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Nombre Producto</th>
+    <th>Sucursal</th>
+    <th>Cantidad</th>
   </tr>
-
+</thead>
+<tbody>
 <% @stocks.each do |stock| %>
   <tr>
-    <td><%= link_to 'Show', stock %></td>
-    <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
-    <td><%= link_to 'Destroy', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  	<td><%= stock.product.name %></td>
+  	<td><%= stock.branch.name %></td>
+  	<td><%= stock.size %></td>
+    <td><%= link_to 'Modificar', edit_stock_path(stock) , :class => "btn btn-primary"%></td>
   </tr>
 <% end %>
+</tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Stock', new_stock_path %>

@@ -6,6 +6,7 @@
     <th>Nombre</th>
     <th>Télefono</th>
     <th>Email</th>
+    <th class="span4"></th>
   </tr>
 </thead>
 <tbody>
@@ -14,9 +15,11 @@
   	<td><%= branch.name %></td>
   	<td><%= branch.address %></td>  	
   	<td><%= branch.email %></td>
-  	<td><%= link_to 'Stock', "#", :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Editar', edit_branch_path( branch) , :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Borrar', branch, method: :delete, data: { confirm: 'Está seguro que desea borrar la sucursal?' }, :class => "btn btn-danger" %></td>
+    <td>
+     <%= link_to 'Stock', "#", :class => "btn btn-primary pull-right"%>    	
+     <%= link_to 'Editar', edit_branch_path( branch) , :class => "btn btn-primary pull-right"%>
+     <%= link_to 'Borrar', branch, method: :delete, data: { confirm: 'Está seguro que desea borrar la sucursal?' }, :class => "btn btn-danger pull-right" %>
+    </td>
   </tr>
 <% end %>
 </tbody>

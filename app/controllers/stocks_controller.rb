@@ -3,7 +3,6 @@ class StocksController < ApplicationController
   # GET /stocks.json
   def index
     @stocks = Stock.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @stocks }
@@ -25,26 +24,29 @@ class StocksController < ApplicationController
   # GET /stocks/new.json
   def new
     @stock = Stock.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @stock }
     end
   end
-
-  # GET /stocks/1/edit
+  
   def edit
     @stock = Stock.find(params[:id])
-  end
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @stock }
+    end
+  end  
+
 
   # POST /stocks
   # POST /stocks.json
-  def create
-    @stock = Stock.new(params[:stock])
-
+  def update_stock
+    @product = Product.find(params[:stock][:product_id])
     respond_to do |format|
-      if @stock.save
-        format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
+    if @product.increment_stock( params[:stock][:size],  params[:stock][:branch_id] , params[:stock][:supplier_id])
+      
+        format.html { redirect_to stocks_path, notice: 'Se agrego el stock correctamente' }
         format.json { render json: @stock, status: :created, location: @stock }
       else
         format.html { render action: "new" }
@@ -60,7 +62,7 @@ class StocksController < ApplicationController
 
     respond_to do |format|
       if @stock.update_attributes(params[:stock])
-        format.html { redirect_to @stock, notice: 'Stock was successfully updated.' }
+        format.html { redirect_to stocks_path, notice: 'Se modifico el stock correctamente' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
