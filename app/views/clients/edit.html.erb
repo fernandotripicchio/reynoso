@@ -4,6 +4,6 @@
   	<%= render :partial => "form", :locals => {:f => f}%>
   	<hr />
     <%= link_to "Cancelar", clients_path, :class => "btn btn-secundary btn-form"%>
-    <%= f.submit "Actualizar", :class => "btn btn-primary btn-form"%>
+    <%= f.link_to "Actualizar", :class => "btn btn-primary btn-form"%>
     <% end %>
 </div>

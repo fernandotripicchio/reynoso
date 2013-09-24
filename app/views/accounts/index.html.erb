@@ -1,0 +1,21 @@
+<legend>Cuentas Corrientes</legend>
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+	  <tr>
+	    <th>Cliente</th>
+	    <th>Dirección</th>
+	    <th>Saldo</th>
+	  </tr>
+</thead>
+<tbody>
+<% @accounts.each do | account | %>
+  <tr>
+  	<td><%= account.client.name %></td>
+  	<td><%= account.client.address %></td>
+  	<td><%= account.mount %></td>
+    <td><%= link_to 'Editar', edit_account_path(account) , :class => "btn btn-primary"%></td>
+  </tr>
+<% end %>
+</tbody>
+</table>

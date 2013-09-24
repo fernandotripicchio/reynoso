@@ -1,0 +1,5 @@
+<fieldset>	
+	<%= f.association :client, :as => :string, :label => "Cliente", :readonly => true %>
+	<%= f.input :mount, :placeholder => "saldo",:label => "Saldo:",  :input_html => { class: 'input-small'  }  %>
+	<%= f.input :comments, :as => :text, :placeholder => "Observaciones",:label => "Observaciones:",  :input_html => { :rows => '10', class: 'input-xxlarge'  }  %>    
+</fieldset>  
