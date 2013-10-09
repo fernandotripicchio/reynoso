@@ -42,4 +42,12 @@ class ApplicationController < ActionController::Base
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
+    
+    def associate_branch
+      session[:branch_id] = params[:branch_id]
+    end
+    
+    def get_branch
+      @branch_id = session[:branch_id]
+    end
 end

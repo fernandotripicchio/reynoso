@@ -1,9 +1,13 @@
 class ProductsController < ApplicationController
   before_filter :current_user  
+  before_filter :get_data
+  
+  
+  layout "branch"
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = @branch.products
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,8 +48,8 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
 
     respond_to do |format|
-      if @product.save
-        format.html { redirect_to products_path, notice: 'Se agrego el producto exitosamente.' }
+      if @product.add_product(@branch)
+        format.html { redirect_to branch_product_edit_attributes_path(@branch, @product), notice: 'Se agrego el producto exitosamente.' }
         format.json { render json: @product, status: :created, location: @product }
       else
         format.html { render action: "new" }
@@ -80,5 +84,31 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url }
       format.json { head :no_content }
     end
+  end
+  
+  def edit_attributes
+     @product = Product.find(params[:product_id])
+  end
+  
+  def actualizar_atributos
+     @product = Product.find(params[:product_id])
+     @stock   = Stock.find(params[:stock_id])
+     @stock.size = params[:stock][:initial_stock]
+     @stock.update_attributes(params[:stock])
+     
+     redirect_to branch_products_path(@branch), notice: 'Se modifico el producto exitosamente.' 
+  end
+  
+  
+  def save_attributes
+     @product = Product.find(params[:product_id])
+     @product.save_attributes_branch(@branch)
+     
+     redirect_to branch_products_path(@branch, notice: 'Se modifico el producto exitosamente.') 
+  end
+  private
+  
+  def get_data
+    @branch = Branch.find(params[:branch_id])
   end
 end

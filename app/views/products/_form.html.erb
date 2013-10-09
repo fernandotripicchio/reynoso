@@ -1,7 +1,8 @@
 <fieldset>	
 	<%= f.input :name, :placeholder => "nombre", :label => "Nombre:", :input_html => { class: 'input-xxlarge'  }  %>
-	<%= f.input :price, :placeholder => "Precio",:label => "Precio:",  :input_html => { class: 'input-small'  }  %>
-	<%= f.input :profit, :placeholder => "ganancia",:label => "Ganancia:",  :input_html => { class: 'input-small'  }  %>
+	<%= f.input :code, :placeholder => "codigo",:label => "Codigo:",  :input_html => { class: 'input-small'  }  %>
+	<%= f.input :cost, :placeholder => "costo original",:label => "Costo Original:",  :input_html => { class: 'input-small'  }  %>
     <%= f.input :iva, :placeholder => "iva",:label => "IVA:",  :input_html => { class: 'input-small'  }  %>
+    <%= f.input :description, :as => :text, :placeholder => "descripcion",:label => "Descripcion:",  :input_html => { class: 'input-xxlarge'  }  %>
 </fieldset>    
 

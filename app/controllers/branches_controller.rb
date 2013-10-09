@@ -1,6 +1,30 @@
 class BranchesController < ApplicationController
+  before_filter :require_user
+  before_filter :get_branches, :except => :elegir_branch
+  
+  layout :choose_layout  
+  
+  
+  def pick
+    @branches = Branch.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @branches }
+    end
+    
+  end
+  
+  #Asocia ID de Branch
+  def elegir_branch
+    associate_branch
+    get_branch
+    redirect_to branch_products_path(params[:branch_id]) 
+  end
+  
+  
+  
   # GET /branches
-  # GET /branches.json
+  # GET /branches.json  
   def index
     @branches = Branch.all
 
@@ -79,5 +103,19 @@ class BranchesController < ApplicationController
       format.html { redirect_to branches_url }
       format.json { head :no_content }
     end
+  end
+  
+  private 
+  
+  def get_branches
+    
+  end
+  
+  def choose_layout
+        if [ 'pick' ].include? action_name
+          'nobranch'
+        else
+          'branch'
+        end      
   end
 end

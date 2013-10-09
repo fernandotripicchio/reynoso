@@ -1,9 +1,9 @@
 <div id="edit_form" class="form_project">  	
-	<legend>Editar Producto </legend>
-  	<%= simple_form_for @product ,  :html => { :class => "form-horizontal" } do |f| %>
+	<legend>Sucursal <%= @branch.name %> - Editar Producto </legend>
+  	<%= simple_form_for @product , :url => edit_branch_product_path(@branch, @product),:html => { :class => "form-horizontal" } do |f| %>
   	<%= render :partial => "form", :locals => {:f => f}%>
   	<hr />
-    <%= link_to "Cancelar", products_path, :class => "btn btn-secundary btn-form"%>
+    <%= link_to "Cancelar", branch_products_path(@branch), :class => "btn btn-secundary btn-form"%>
     <%= f.submit "Actualizar", :class => "btn btn-primary btn-form"%>
     <% end %>
 </div>

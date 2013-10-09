@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130921204026) do
+ActiveRecord::Schema.define(:version => 20131009055257) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "client_id"
@@ -47,11 +47,13 @@ ActiveRecord::Schema.define(:version => 20130921204026) do
 
   create_table "products", :force => true do |t|
     t.string   "name"
-    t.decimal  "price",      :precision => 8, :scale => 2
-    t.decimal  "iva",        :precision => 8, :scale => 2
-    t.decimal  "profit",     :precision => 8, :scale => 2
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.decimal  "cost",        :precision => 8, :scale => 2
+    t.decimal  "iva",         :precision => 8, :scale => 2
+    t.decimal  "profit",      :precision => 8, :scale => 2
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "code"
+    t.text     "description"
   end
 
   create_table "sale_items", :force => true do |t|
@@ -72,6 +74,14 @@ ActiveRecord::Schema.define(:version => 20130921204026) do
     t.string   "payment"
   end
 
+  create_table "stock_logs", :force => true do |t|
+    t.integer  "stock_id"
+    t.integer  "supplier_id"
+    t.string   "type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "stocks", :force => true do |t|
     t.integer  "size"
     t.integer  "branch_id"
@@ -81,7 +91,8 @@ ActiveRecord::Schema.define(:version => 20130921204026) do
     t.datetime "updated_at",                                                            :null => false
     t.integer  "suplier_id"
     t.string   "kind_movement",                               :default => "Incremento"
-    t.integer  "supplier_id"
+    t.integer  "profit"
+    t.integer  "initial_stock"
   end
 
   create_table "suppliers", :force => true do |t|

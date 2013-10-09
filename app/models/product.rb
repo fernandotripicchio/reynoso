@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
-  attr_accessible :name, :price, :iva, :profit
-  validates  :name, :price, :iva, :profit, :presence => true
+  attr_accessible :name, :price, :iva, :profit, :code, :cost, :description
+  validates  :name, :cost, :iva, :presence => true
   
   has_many :stocks
   has_many :branches, :through => :stocks
@@ -24,6 +24,31 @@ class Product < ActiveRecord::Base
       stock.save!
       return stock     
       
+  end
+  
+  def add_product(branch)    
+      stock = Stock.new
+      stock.branch_id = branch.id      
+      stock.size = 0      
+      log = StockLog.new
+      log.supplier_id = 0
+      log.type = "Creacion"
+      self.stocks << stock
+      stock.stock_logs << log
+      self.save
+  end
+  
+  
+  def price_branch(stock)
+       cost = self.cost
+       profit = stock.profit
+       price = cost  + ( (cost * profit) / 100 ) 
+       return price    
+  end
+  
+  def get_stock(branch)
+    stock = self.stocks.where("branch_id = ?", branch.id).first
+    stock
   end
   
 end

@@ -1,0 +1,30 @@
+<legend>Selecciona una surcusal</legend>
+<div class="row-fluid span10">
+	
+<%= form_tag( elegir_branch_path, method: "post") do %>
+  	
+	<table class="table table-striped span9">
+		<thead>
+	  <tr>
+	  	<th class="span1">&nbsp;</th>
+	    <th class="span9">&nbsp;</th>
+	  </tr>
+	</thead>
+	<tbody>
+	<% @branches.each do | branch | %>
+	  <tr>
+	  	<td><%= radio_button_tag("branch_id", branch.id , true)%></td>
+	  	<td><%= branch.name %></td>
+	  </tr>
+	<% end %>
+	<tr>
+		<td colspan="2">
+           <%= submit_tag("Seleccionar", {:class => "pull-right"}) %>			
+		</td>
+	</tr>
+	</tbody>
+	</table>
+	
+
+<% end %>	
+</div>

@@ -1,25 +1,34 @@
-<legend>Productos</legend>
+<legend>Sucursal <%= @branch.name %> - Listado de Productos</legend>
 
 <div class="row-fluid">
 <table class="table table-striped">
 	<thead>
 	<tr>
 	    <th>Producto</th>
-	    <th>Precio</th>
+	    <th>Codigo</th>
+	    <th>Costo</th>
 	    <th>IVA</th>
-	    <th>Ganancia</th>
+	    <th>Ganancia <%= @branch.name %></th>
+	    <th>Precio Venta <%= @branch.name %></th>
+	    <th>Stock Inicial <%= @branch.name %></th>
+	    <th>Stock  <%= @branch.name %></th>
 	    <th></th>
   </tr>
 </thead>
 <tbody>
 <% @products.each do |product| %>
+  <% stock = product.get_stock(@branch)%>
   <tr>
-    <td><%= product.name %></td>
-    <td>$ <%= product.price %></td>
-    <td><%= product.iva %> %%</td>
-    <td> <%= product.profit %> %</td>
-    <td><%= link_to 'Editar', edit_product_path(product), :class => "btn btn-primary"  %></td>
-    <td><%= link_to 'Borrar', product, method: :delete, data: { confirm: 'Está seguro que desea borrar el producto?' }, :class => "btn btn-danger"  %></td>
+    <td><%= product.name %>  	  </td>
+    <td><%= product.code %>		  </td>
+    <td>$ <%= product.cost %>     </td>
+    <td><%= product.iva %>    %   </td>
+    <td><%= stock.profit %>   %   </td>
+    <td>$ <%= product.price_branch(stock) %>   </td>
+    <td><%= stock.initial_stock %>   </td>
+    <td><%= stock.size %>   </td>
+    <td><%= link_to 'Editar', edit_branch_product_path(@branch, product), :class => "btn btn-primary"  %> </td>
+    <td><%= link_to 'Borrar', branch_product_path(@branch, product), method: :delete, data: { confirm: 'Está seguro que desea borrar el producto?' }, :class => "btn btn-danger"  %></td>
   </tr>
 <% end %>
 </tbody>
