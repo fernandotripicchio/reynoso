@@ -1,5 +1,6 @@
+<legend>Sucursal <%= @branch.name %> - Editar Cliente</legend>
 <div id="edit_form" class="form_project">  	
-	<legend>Editar Cliente </legend>
+	
   	<%= simple_form_for @client , :url => branch_client_path(@branch),  :html => { :class => "form-horizontal" } do |f| %>
   	<%= render :partial => "form", :locals => {:f => f}%>
   	<hr />

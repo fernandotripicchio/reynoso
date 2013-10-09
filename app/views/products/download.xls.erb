@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Results">  	
+    <Table>
+    	<Row>
+            <Cell><Data ss:Type="String"> Producto </Data></Cell>
+			<Cell><Data ss:Type="String"> Codigo   </Data></Cell>
+			<Cell><Data ss:Type="String"> Costo    </Data></Cell>
+			<Cell><Data ss:Type="String"> IVA    </Data></Cell>
+    		<Cell><Data ss:Type="String"> Costo Con IVA    </Data></Cell>
+    		<Cell><Data ss:Type="String"> Ganancia    </Data></Cell>
+    		<Cell><Data ss:Type="String"> Precio Venta    </Data></Cell>
+    	</Row>
+    	<% @products.each do | product | %>
+              <% stock = product.get_stock(@branch)%>    	
+		      <Row>
+			      <Cell><Data ss:Type="String"><%= product.name %></Data></Cell>
+			      <Cell><Data ss:Type="String"><%= product.code %></Data></Cell>
+			      <Cell><Data ss:Type="String"><%= product.cost %></Data></Cell>
+			      <Cell><Data ss:Type="String"><%= product.iva %></Data></Cell>
+			      <Cell><Data ss:Type="String"><%= product.cost_iva %></Data></Cell>
+			      <Cell><Data ss:Type="String"><%= product.profit %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= product.price_branch(stock) %></Data></Cell>					           
+		     </Row>
+         <% end %>
+      
+    </Table>
+  </Worksheet>
+</Workbook>

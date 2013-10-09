@@ -1,5 +1,9 @@
 class SuppliersController < ApplicationController
   before_filter :current_user  
+  before_filter :get_data
+  
+  
+  layout "branch"   
   # GET /suppliers
   # GET /suppliers.json
   def index
@@ -45,7 +49,7 @@ class SuppliersController < ApplicationController
 
     respond_to do |format|
       if @supplier.save
-        format.html { redirect_to suppliers_path, notice: 'Se agrego el proveedor exitosamente.' }
+        format.html { redirect_to branch_suppliers_path(@branch), notice: 'Se agrego el proveedor exitosamente.' }
         format.json { render json: @supplier, status: :created, location: @supplier }
       else
         format.html { render action: "new" }
@@ -61,7 +65,7 @@ class SuppliersController < ApplicationController
 
     respond_to do |format|
       if @supplier.update_attributes(params[:supplier])
-        format.html { redirect_to suppliers_path, notice: 'Se modifico el proveedor exitosamente.' }
+        format.html { redirect_to branch_suppliers_path(@branch), notice: 'Se modifico el proveedor exitosamente.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,8 +82,14 @@ class SuppliersController < ApplicationController
     flash[:notice] = "Se elimino el proveedor"
 
     respond_to do |format|
-      format.html { redirect_to suppliers_url }
+      format.html { redirect_to branch_suppliers_path(@branch) }
       format.json { head :no_content }
     end
   end
+  
+  private
+  
+  def get_data
+    @branch = Branch.find(params[:branch_id])
+  end  
 end

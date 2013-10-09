@@ -18,8 +18,8 @@
 		    	<td><%= user.full_name %></td>
 		    	<td><%= user.email %></td>
 		    	<td>
-		    		<%= link_to "Editar", edit_user_path(user), :class => "btn btn-primary" %>
-		    		<%= link_to "Eliminar", user_path(user), :method => :delete,:class => "btn btn-danger" ,:confirm => "Esta seguro que desea eliminar ?" %>
+		    		<%= link_to "Editar", edit_branch_user_path(@branch,user), :class => "btn btn-primary" %>
+		    		<%= link_to "Eliminar", branch_user_path(@branch, user), :method => :delete,:class => "btn btn-danger" ,:confirm => "Esta seguro que desea eliminar ?" %>
 
 		    	</td>
 		    </tr>  

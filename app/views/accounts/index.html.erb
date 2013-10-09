@@ -1,4 +1,4 @@
-<legend>Cuentas Corrientes</legend>
+<legend>Sucursal <%= @branch.name %> - Cuentas Corrientes</legend>
 <div class="row-fluid">
 <table class="table table-striped">
 	<thead>
@@ -13,8 +13,8 @@
   <tr>
   	<td><%= account.client.name %></td>
   	<td><%= account.client.address %></td>
-  	<td><%= account.mount %></td>
-    <td><%= link_to 'Editar', edit_account_path(account) , :class => "btn btn-primary"%></td>
+  	<td> $ <%= account.mount %></td>
+    <td><%= link_to 'Editar', edit_branch_account_path(@branch,account) , :class => "btn btn-primary"%></td>
   </tr>
 <% end %>
 </tbody>

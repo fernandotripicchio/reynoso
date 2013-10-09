@@ -106,6 +106,14 @@ class ProductsController < ApplicationController
      
      redirect_to branch_products_path(@branch, notice: 'Se modifico el producto exitosamente.') 
   end
+  
+  def download
+    @products = @branch.products
+    respond_to do |format|
+      format.html
+      format.xls
+    end    
+  end  
   private
   
   def get_data

@@ -1,4 +1,5 @@
 <legend>Sucursal <%= @branch.name %> - Listado de Productos</legend>
+<%= link_to "Lista de Precios", download_products_path(@branch, :format => "xls"), :class => "btn btn-primary pull-left" %>
 
 <div class="row-fluid">
 <table class="table table-striped">

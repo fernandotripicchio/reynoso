@@ -1,4 +1,9 @@
 class AccountsController < ApplicationController
+  before_filter :current_user  
+  before_filter :get_data
+  
+  
+  layout "branch"   
   # GET /accounts
   # GET /accounts.json
   def index
@@ -44,7 +49,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to accounts_path, notice: 'Se creo la cuenta corriente.' }
+        format.html { redirect_to branch_accounts_path(@branch), notice: 'Se creo la cuenta corriente.' }
         format.json { render json: @account, status: :created, location: @account }
       else
         format.html { render action: "new" }
@@ -60,7 +65,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.update_attributes(params[:account])
-        format.html { redirect_to accounts_path, notice: 'Se modifico la cuenta corriente' }
+        format.html { redirect_to branch_accounts_path(@branch), notice: 'Se modifico la cuenta corriente' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -79,5 +84,11 @@ class AccountsController < ApplicationController
       format.html { redirect_to accounts_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  
+  def get_data
+    @branch = Branch.find(params[:branch_id])
   end
 end

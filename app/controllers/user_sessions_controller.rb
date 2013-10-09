@@ -34,7 +34,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.find
     @user_session.destroy 
     respond_to do |format|
-      format.html { redirect_to(:users, :notice => 'Nos Vemos!') }
+      format.html { redirect_to(root_path :notice => 'Nos Vemos!') }
       format.xml  { head :ok }
     end
   end  

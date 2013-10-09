@@ -16,7 +16,8 @@ Profe::Application.routes.draw do
          get :edit_attributes
          post :save_attributes
       end
-      resources :stocks 
+      resources :stocks
+      resources :users 
       match "actualizar_stock" => "stocks#update_stock"
       
       match "modificar_stock/:stock_id" => "stocks#modificar_stock", :as => "modificar_stock"
@@ -27,14 +28,14 @@ Profe::Application.routes.draw do
       
       match "selected_branch/:branch_id" => "branches#selected_branch", :as => "selected_branch"
       
-      
+
   end       
          
-  resources :users, :user_sessions
+  resources  :user_sessions
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout    
   root :to => "branches#index"
   match "elegir_branch" => "branches#elegir_branch", :as => "elegir_branch"
   match "actualizar_atributos/:branch_id/:product_id/:stock_id" => "products#actualizar_atributos", :as => "actualizar_atributos"
-
+  match 'download_products/:branch_id/' => "products#download", :as => "download_products"
 end
