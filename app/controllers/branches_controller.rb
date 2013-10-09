@@ -2,6 +2,7 @@ class BranchesController < ApplicationController
   before_filter :require_user
   before_filter :get_branches, :except => :elegir_branch
   
+  
   layout :choose_layout  
   
   
@@ -115,7 +116,7 @@ class BranchesController < ApplicationController
         if [ 'pick' ].include? action_name
           'nobranch'
         else
-          'branch'
+          'nobranch'
         end      
   end
 end

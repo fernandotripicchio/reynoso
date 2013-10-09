@@ -8,10 +8,11 @@
 	    <th>Codigo</th>
 	    <th>Costo</th>
 	    <th>IVA</th>
-	    <th>Ganancia <%= @branch.name %></th>
-	    <th>Precio Venta <%= @branch.name %></th>
-	    <th>Stock Inicial <%= @branch.name %></th>
-	    <th>Stock  <%= @branch.name %></th>
+	    <th>Costo con Iva</th>
+	    <th>Ganancia</th>
+	    <th>Precio Venta </th>
+	    <th>Stock Inicial</th>
+	    <th>Stock </th>
 	    <th></th>
   </tr>
 </thead>
@@ -19,15 +20,17 @@
 <% @products.each do |product| %>
   <% stock = product.get_stock(@branch)%>
   <tr>
-    <td><%= product.name %>  	  </td>
-    <td><%= product.code %>		  </td>
-    <td>$ <%= product.cost %>     </td>
-    <td><%= product.iva %>    %   </td>
+    <td><%= product.name %>    </td>
+    <td><%= product.code %>	   </td>
+    <td>$ <%= product.cost %>  </td>
+    <td><%= product.iva %> %   </td>
+    <td>$ <%= product.cost_iva %> </td>
     <td><%= stock.profit %>   %   </td>
     <td>$ <%= product.price_branch(stock) %>   </td>
     <td><%= stock.initial_stock %>   </td>
     <td><%= stock.size %>   </td>
     <td><%= link_to 'Editar', edit_branch_product_path(@branch, product), :class => "btn btn-primary"  %> </td>
+    <td><%= link_to 'Stock', branch_product_edit_attributes_path(@branch, product), :class => "btn btn-primary"  %> </td>
     <td><%= link_to 'Borrar', branch_product_path(@branch, product), method: :delete, data: { confirm: 'Está seguro que desea borrar el producto?' }, :class => "btn btn-danger"  %></td>
   </tr>
 <% end %>

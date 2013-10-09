@@ -1,8 +1,9 @@
 class Client < ActiveRecord::Base
    has_many :sales
    has_one  :account #Cuenta Corriente
+   belongs_to :branch
    
-   attr_accessible :name, :address, :email, :phone, :comments, :province, :zip_code
+   attr_accessible :name, :address, :email, :phone, :comments, :province, :zip_code, :branch_id
    
    validates :name, :presence => true
    

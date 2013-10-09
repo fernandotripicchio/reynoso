@@ -1,26 +1,36 @@
 <legend>Surcusales</legend>
+<%= link_to 'Nueva Sucursal', new_branch_path, :class => "btn btn-primary"%>    	
 <div class="row-fluid">
 <table class="table table-striped">
 	<thead>
   <tr>
+  	<th>&nbsp;</th>
     <th>Nombre</th>
     <th>Télefono</th>
     <th>Email</th>
     <th class="span4"></th>
   </tr>
 </thead>
+<%= form_tag( elegir_branch_path, method: "post") do %>
 <tbody>
 <% @branches.each do | branch | %>
   <tr>
+  	<td><%= radio_button_tag("branch_id", branch.id , true)%></td>
   	<td><%= branch.name %></td>
   	<td><%= branch.address %></td>  	
   	<td><%= branch.email %></td>
     <td>
-     <%= link_to 'Stock', "#", :class => "btn btn-primary pull-right pull-btn-left"%>    	
      <%= link_to 'Editar', edit_branch_path( branch) , :class => "btn btn-primary pull-right pull-btn-left"%>
      <%= link_to 'Borrar', branch, method: :delete, data: { confirm: 'Está seguro que desea borrar la sucursal?' }, :class => "btn btn-danger pull-right pull-btn-left" %>
     </td>
   </tr>
 <% end %>
+	<tr>
+		<td colspan="5">
+           <%= submit_tag("Seleccionar", {:class => "pull-right"}) %>			
+		</td>
+	</tr>
+
 </tbody>
+<% end %>	
 </table>

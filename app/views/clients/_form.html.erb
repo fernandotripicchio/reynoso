@@ -1,5 +1,6 @@
 
 <fieldset>	
+	<%= f.input :branch_id, :as => :hidden, :input_html => { :value => @branch.id } %>
 	<%= f.input :name, :placeholder => "nombre", :label => "Nombre:", :input_html => {class: 'input-xxlarge'   }  %>
 	<%= f.input :address, :placeholder => "direccion" ,:label => "Dirección:",  :input_html => { class: 'input-xxlarge' }  %>
 	<%= f.input :email, :placeholder => "email",:label => "Email:",  :input_html => {  class: 'input-medium' }  %>

@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        format.html { redirect_to products_path, notice: 'Se modifico el producto exitosamente.'  }
+        format.html { redirect_to branch_products_path(@branch), notice: 'Se modifico el producto exitosamente.'  }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

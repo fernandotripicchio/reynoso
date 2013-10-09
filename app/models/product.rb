@@ -40,10 +40,18 @@ class Product < ActiveRecord::Base
   
   
   def price_branch(stock)
-       cost = self.cost
+       cost = self.cost_iva
        profit = stock.profit
        price = cost  + ( (cost * profit) / 100 ) 
        return price    
+  end
+  
+  def cost_iva
+       cost = self.cost
+       iva  = self.iva
+       price = cost  + ( ( cost * iva) / 100 ) 
+       return price    
+       
   end
   
   def get_stock(branch)

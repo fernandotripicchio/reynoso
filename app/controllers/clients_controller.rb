@@ -1,8 +1,13 @@
 class ClientsController < ApplicationController
+  before_filter :current_user  
+  before_filter :get_data
+  
+  
+  layout "branch"  
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+    @clients = @branch.clients
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,10 +45,10 @@ class ClientsController < ApplicationController
   # POST /clients.json
   def create
     @client = Client.new(params[:client])
-
+    
     respond_to do |format|
       if @client.save
-        format.html { redirect_to clients_path, notice: 'Client was successfully created.' }
+        format.html { redirect_to branch_clients_path(@branch), notice: 'Se creo el cliente con exito' }
         format.json { render json: @client, status: :created, location: @client }
       else
         format.html { render action: "new" }
@@ -59,7 +64,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
-        format.html { redirect_to clients_path, notice: 'Client was successfully updated.' }
+        format.html { redirect_to branch_clients_path(@branch), notice: 'Se modifico el cliente con exito.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -75,11 +80,17 @@ class ClientsController < ApplicationController
     @client.destroy
 
     respond_to do |format|
-      format.html { redirect_to clients_url }
+      format.html { redirect_to branch_clients_path(@branch) }
       format.json { head :no_content }
     end
   end
   
+  
+  private
+  
+  def get_data
+    @branch = Branch.find(params[:branch_id])
+  end  
   
 
 end
