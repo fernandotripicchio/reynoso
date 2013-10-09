@@ -19,7 +19,6 @@ class SalesController < ApplicationController
   # GET /sales/1.json
   def show
     @sale = Sale.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @sale }
@@ -30,7 +29,7 @@ class SalesController < ApplicationController
   # GET /sales/new.json
   def new
     @sale = Sale.new
-
+    @sale.items.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @sale }
@@ -49,7 +48,7 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to sales_path, notice: 'La venta se ha creado exitosamente' }
+        format.html { redirect_to branch_sales_path(@branch), notice: 'La venta se ha creado exitosamente' }
         format.json { render json: @sale, status: :created, location: @sale }
       else
         format.html { render action: "new" }
@@ -65,7 +64,7 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.update_attributes(params[:sale])
-        format.html { redirect_to sales_path, notice: 'La venta se modifico con exito' }
+        format.html { redirect_to branch_sales_path(@branch), notice: 'La venta se modifico con exito' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -81,7 +80,7 @@ class SalesController < ApplicationController
     @sale.destroy
 
     respond_to do |format|
-      format.html { redirect_to sales_url }
+      format.html { redirect_to branch_sales_path(@branch) }
       format.json { head :no_content }
     end
   end

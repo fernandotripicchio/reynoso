@@ -17,7 +17,7 @@
   	<td><%= sale.date_sale %></td>
   	<td><%= ( !sale.client.blank? ) ? sale.client.name : "" %></td>
   	<td><%= sale.payment %></td>
-    <td><%= link_to 'Detalle', "#", :class => "btn btn-primary"%></td>
+    <td><%= link_to 'Editar', edit_branch_sale_path(@branch, sale), :class => "btn btn-primary"%></td>
     <td><%= link_to 'Anular', branch_sale_path(@branch,sale), method: :delete, data: { confirm: 'Está seguro que desea anular la venta?' }, :class => "btn btn-danger" %></td>
   </tr>
 <% end %>

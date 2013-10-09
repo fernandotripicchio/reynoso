@@ -15,6 +15,7 @@ gem 'ui_datepicker-rails3'
 gem 'jquery-ui-rails'
 gem "watu_table_builder", :require => "table_builder"
 gem 'prawn_rails'
+gem "nested_form"
 
 gem 'sass-rails',   '~> 3.2.3'
 group :assets do
