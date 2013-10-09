@@ -1,4 +1,4 @@
-<legend>Listado de Ventas</legend>
+<legend>Sucursal <%=@branch.name%> - Listado de Ventas</legend>
 <div class="row-fluid">
 <table class="table table-striped">
 	<thead>
@@ -7,8 +7,7 @@
 	    <th>Fecha</th>
 	    <th>Cliente</th>
 	    <th>Forma de Pago</th>
-	    <th>Valor</th>
-   
+	    <th>Valor</th>   
 	  </tr>
 </thead>
 <tbody>
@@ -19,7 +18,7 @@
   	<td><%= ( !sale.client.blank? ) ? sale.client.name : "" %></td>
   	<td><%= sale.payment %></td>
     <td><%= link_to 'Detalle', "#", :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Anular', sale, method: :delete, data: { confirm: 'Está seguro que desea anular la venta?' }, :class => "btn btn-danger" %></td>
+    <td><%= link_to 'Anular', branch_sale_path(@branch,sale), method: :delete, data: { confirm: 'Está seguro que desea anular la venta?' }, :class => "btn btn-danger" %></td>
   </tr>
 <% end %>
 </tbody>

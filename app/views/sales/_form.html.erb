@@ -8,6 +8,6 @@
                 :label => "Forma de Pago:", 
                 :checked => 'efectivo' %>
           
-    
+    <%= f.association :products, :as => :check_boxes %>
 	<%= f.input :comments, :as => :text, :placeholder => "Observaciones",:label => "Observaciones:",  :input_html => { class: 'input-xxlarge'  }  %>    
 </fieldset>   

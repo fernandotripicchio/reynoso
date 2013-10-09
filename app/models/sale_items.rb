@@ -1,3 +1,4 @@
 class SaleItems < ActiveRecord::Base
-  # attr_accessible :title, :body
+  belongs_to :sale
+  belongs_to :product
 end

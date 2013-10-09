@@ -1,4 +1,9 @@
 class SalesController < ApplicationController
+  before_filter :current_user  
+  before_filter :get_data
+  
+  
+  layout "branch"     
   # GET /sales
   # GET /sales.json
   def index
@@ -83,5 +88,11 @@ class SalesController < ApplicationController
   
   def reportes
     
+  end
+  
+  private
+  
+  def get_data
+    @branch = Branch.find(params[:branch_id])
   end
 end
