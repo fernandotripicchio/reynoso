@@ -29,6 +29,7 @@ class SalesController < ApplicationController
   # GET /sales/new.json
   def new
     @sale = Sale.new
+    @sale.date_sale = Time.now.strftime("%d/%m/%Y")
     @sale.items.build
     respond_to do |format|
       format.html # new.html.erb
@@ -45,9 +46,10 @@ class SalesController < ApplicationController
   # POST /sales.json
   def create
     @sale = Sale.new(params[:sale])
-
+    @sale.date_sale = params[:sale][:date_sale].to_time.strftime("%d/%m/%Y")
     respond_to do |format|
       if @sale.save
+        @sale.decrement_stock(@branch)
         format.html { redirect_to branch_sales_path(@branch), notice: 'La venta se ha creado exitosamente' }
         format.json { render json: @sale, status: :created, location: @sale }
       else
@@ -78,7 +80,7 @@ class SalesController < ApplicationController
   def destroy
     @sale = Sale.find(params[:id])
     @sale.destroy
-
+    @sale.increment_stock(@branch)
     respond_to do |format|
       format.html { redirect_to branch_sales_path(@branch) }
       format.json { head :no_content }

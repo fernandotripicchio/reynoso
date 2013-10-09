@@ -12,4 +12,22 @@ class Sale < ActiveRecord::Base
    attr_accessible :date_sale, :branch_id, :client_id,  :payment, :comments,:items_attributes
    
    validate :date_sale, :presence => true
+   
+   
+   def decrement_stock(branch)
+         items = self.items
+         items.each do |item|
+             size = item.size
+             item.product.decrement_stock(size, branch)
+         end
+   end
+   
+   def increment_stock(branch)
+         items = self.items
+         items.each do |item|
+             size = item.size
+             item.product.increment_stock(size, branch)
+         end
+     
+   end
 end
