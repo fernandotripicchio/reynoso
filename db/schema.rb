@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131009063937) do
+ActiveRecord::Schema.define(:version => 20131009073634) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "client_id"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20131009063937) do
     t.string   "kind_movement",                               :default => "Incremento"
     t.integer  "profit"
     t.integer  "initial_stock"
+    t.integer  "temporal_size"
   end
 
   create_table "suppliers", :force => true do |t|

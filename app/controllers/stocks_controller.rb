@@ -1,8 +1,14 @@
 class StocksController < ApplicationController
+  before_filter :current_user  
+  before_filter :get_data
+  
+  
+  layout "branch"   
+  
   # GET /stocks
   # GET /stocks.json
   def index
-    @stocks = Stock.all
+    @stocks = @branch.stocks
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @stocks }
@@ -43,16 +49,34 @@ class StocksController < ApplicationController
   # POST /stocks.json
   def update_stock
     @product = Product.find(params[:stock][:product_id])
-    respond_to do |format|
-    if @product.increment_stock( params[:stock][:size],  params[:stock][:branch_id] , params[:stock][:supplier_id])
-      
-        format.html { redirect_to stocks_path, notice: 'Se agrego el stock correctamente' }
-        format.json { render json: @stock, status: :created, location: @stock }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
-      end
+    if ( !params[:stock][:kind_movement].blank? && params[:stock][:kind_movement] == "Descuento")
+        @product.decrement_stock( params[:stock][:size],  @branch.id)
+    else
+        @product.increment_stock( params[:stock][:size],  @branch.id)
     end
+    
+    redirect_to branch_stocks_path(@branch), notice: 'Se agrego el stock correctamente' 
+
+  end
+  
+  def modificar_stock
+    @stock = Stock.find(params[:stock_id])
+    @product = @stock.product
+    @stock = @product.get_stock(@branch)
+  end
+  
+  
+  def actualizar_stock
+    @product = Product.find(params[:product_id])
+    if ( !params[:stock][:kind_movement].blank? && params[:stock][:kind_movement] == "Descuento")
+        @product.decrement_stock( params[:stock][:temporal_size],  @branch.id)
+    else
+
+        @product.increment_stock( params[:stock][:temporal_size],  @branch.id)
+    end
+    
+    redirect_to branch_stocks_path(@branch), notice: 'Se agrego el stock correctamente' 
+
   end
 
   # PUT /stocks/1
@@ -82,4 +106,10 @@ class StocksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  private
+  
+  def get_data
+    @branch = Branch.find(params[:branch_id])
+  end    
 end

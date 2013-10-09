@@ -1,0 +1,16 @@
+<div id="edit_form" class="form_user">  	
+	<legend>Sucursarl <%= @branch.name %> - Modificar Stock:</legend>
+	<div class="row-horizontal">
+	  	<%= simple_form_for @stock, :url => branch_new_actualizar_stock_path(@branch, @product) ,  :html => { :class => "form-horizontal" } do |f| %>
+        <fieldset>	
+  	        <%= f.input :kind_movement, :collection => ["Incremento", "Descuento"], :label => "Tipo:"  %>   
+			<%= f.input :size, :placeholder => "cantidad",:label => "Cantidad:",  :input_html => { class: 'input-small' , readonly: true  }  %>
+			<%= f.input :temporal_size, :placeholder => "cantidad",:label => "Cantidad a modificar:",  :input_html => { class: 'input-small'  }  %>
+			
+        </fieldset>  
+	  	<hr />
+	  	<%= link_to "Cancelar", branch_stocks_path(@branch), :class => "btn btn-secundary btn-form"%>
+	    <%= f.submit "Guardar", :class => "btn btn-primary btn-form"%>
+	    <% end %>
+	</div>
+</div>

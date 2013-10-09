@@ -1,20 +1,20 @@
-<legend>Stock</legend>
+<legend>Sucursal <%= @branch.name %> - Stocks</legend>
 <div class="row-fluid">
 <table class="table table-striped">
 	<thead>
   <tr>
-    <th>Nombre Producto</th>
-    <th>Sucursal</th>
-    <th>Cantidad</th>
+    <th>Producto</th>
+    <th>Stock Inicial</th>
+    <th>Stock Actual</th>
   </tr>
 </thead>
 <tbody>
 <% @stocks.each do |stock| %>
   <tr>
   	<td><%= stock.product.name %></td>
-  	<td><%= stock.branch.name %></td>
+  	<td><%= stock.initial_stock %></td>
   	<td><%= stock.size %></td>
-    <td><%= link_to 'Modificar', edit_stock_path(stock) , :class => "btn btn-primary"%></td>
+    <td><%= link_to 'Modificar', branch_modificar_stock_path(@branch, stock) , :class => "btn btn-primary"%></td>
   </tr>
 <% end %>
 </tbody>

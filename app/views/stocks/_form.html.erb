@@ -1,7 +1,5 @@
 <fieldset>	
-	<%= f.association :product, :collection => Product.all(order: 'name'), :prompt => "Seleccione un producto", :label => "Producto" %>
-    <%= f.association :branch, :collection => Branch.all(order: 'name'), :prompt => "Seleccione una Sucursal", :label => "Sucursal" %>	
-    <%= f.association :supplier, :collection => Supplier.all(order: 'name'), :prompt => "Seleccione un Proveedor", :label => "Proveedor" %>
+	<%= f.association :product, :collection => @branch.products(order: 'name'), :prompt => "Seleccione un producto", :label => "Producto" %>
     <% if editar %>
        <%= f.input :kind_movement, :collection => ["Incremento", "Descuento"], :label => "Tipo:"  %>    
     <% end %>	

@@ -18,7 +18,13 @@ Profe::Application.routes.draw do
       end
       resources :stocks 
       match "actualizar_stock" => "stocks#update_stock"
+      
+      match "modificar_stock/:stock_id" => "stocks#modificar_stock", :as => "modificar_stock"
+      
+      match "new_actualizar_stock/:product_id" => "stocks#actualizar_stock", :as => "new_actualizar_stock"
+      
       match 'filtrar_stock/:branch_id/' => "stocks#filtrar_stock", :as => "filtrar_stock"
+      
       match "selected_branch/:branch_id" => "branches#selected_branch", :as => "selected_branch"
       
       

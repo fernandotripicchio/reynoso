@@ -5,7 +5,30 @@ class Product < ActiveRecord::Base
   has_many :stocks
   has_many :branches, :through => :stocks
   
-  def increment_stock(size, branch, supplier)
+  def increment_stock(new_size, branch)
+      raise "Debe ingresar cantidad" if new_size.blank?
+      raise "Debe ingresar una sucursal" if branch.blank?
+      
+      #Obtengo el stock actual
+      stock = self.stocks.where("branch_id = ?", branch).first
+      if stock.blank?
+         stock = Stock.new
+         stock.product = self
+         stock.branch_id = branch
+         stock.size = size
+      else
+         cantidad = (stock.size + new_size.to_i)
+         #raise "#{new_size} - #{stock.size} - #{cantidad}"
+         stock.size =   cantidad
+      end
+      
+      stock.save!
+      return stock     
+      
+  end
+  
+  
+  def decrement_stock(size, branch)
       raise "Debe ingresar cantidad" if size.blank?
       raise "Debe ingresar una sucursal" if branch.blank?
       
@@ -15,16 +38,15 @@ class Product < ActiveRecord::Base
          stock = Stock.new
          stock.product = self
          stock.branch_id = branch
-         stock.supplier_id = supplier
-         stock.size = size
+         stock.size = 0
       else
-         stock.size = stock.size + size.to_i  
+         stock.size = stock.size - size.to_i  
       end
       
       stock.save!
       return stock     
       
-  end
+  end  
   
   def add_product(branch)    
       stock = Stock.new
