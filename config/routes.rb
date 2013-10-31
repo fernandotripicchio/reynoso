@@ -1,4 +1,10 @@
 Profe::Application.routes.draw do
+  
+
+
+ 
+
+
   #Under the branches spaces
   resources :branches do
       collection do
@@ -18,6 +24,8 @@ Profe::Application.routes.draw do
       end
       resources :stocks
       resources :users 
+      resources :expenses
+      resources :balances
       match "actualizar_stock" => "stocks#update_stock"
       
       match "modificar_stock/:stock_id" => "stocks#modificar_stock", :as => "modificar_stock"
@@ -38,4 +46,9 @@ Profe::Application.routes.draw do
   match "elegir_branch" => "branches#elegir_branch", :as => "elegir_branch"
   match "actualizar_atributos/:branch_id/:product_id/:stock_id" => "products#actualizar_atributos", :as => "actualizar_atributos"
   match 'download_products/:branch_id/' => "products#download", :as => "download_products"
+  match 'download_accounts/:branch_id/' => "accounts#download", :as => "download_accounts"
+  match 'download_balance/:branch_id/' => "balances#download", :as => "download_balances"
+  match 'download_expense/:branch_id/' => "expenses#download", :as => "download_expenses"
+  
+
 end

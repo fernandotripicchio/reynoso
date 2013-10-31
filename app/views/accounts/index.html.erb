@@ -1,4 +1,6 @@
 <legend>Sucursal <%= @branch.name %> - Cuentas Corrientes</legend>
+<%= link_to "Excel Cuenta Corriente", download_accounts_path(@branch, :format => "xls"), :class => "btn btn-primary pull-left" %>
+
 <div class="row-fluid">
 <table class="table table-striped">
 	<thead>

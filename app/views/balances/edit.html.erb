@@ -1,0 +1,9 @@
+<div id="edit_form" class="form_project">  	
+    <legend>Sucursal <%=@branch.name %> - Editar Movimiento Caja:</legend>
+  	<%= simple_form_for @balance , :url => branch_balance_path(@branch, @balance) , :html => { :class => "form-horizontal" } do |f| %>
+  	<%= render :partial => "form", :locals => {:f => f}%>
+  	<hr />
+    <%= link_to "Cancelar", branch_balances_path(@branch), :class => "btn btn-secundary btn-form"%>
+    <%= f.submit "Guardar", :class => "btn btn-primary btn-form"%>
+    <% end %>
+</div>

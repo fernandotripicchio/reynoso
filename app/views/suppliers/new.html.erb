@@ -1,5 +1,5 @@
 <div id="edit_form" class="form_user">  	
-	<legend>Nuevo Proveedor:</legend>
+	<legend>Nuevo Laboratorio:</legend>
 	<div class="row-horizontal">
 	  	<%= simple_form_for @supplier ,  :url => branch_suppliers_path(@branch, @supplier),:html => { :class => "form-horizontal" } do |f| %>
 	  	<%= render :partial => "form", :locals => {:f => f}%>

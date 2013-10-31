@@ -1,4 +1,4 @@
-<legend>Proveedores</legend>
+<legend>Laboratorios</legend>
 <div class="row-fluid">
 <table class="table table-striped">
 	<thead>
@@ -15,7 +15,7 @@
   	<td><%= supplier.phone %></td>
   	<td><%= supplier.email %></td>
     <td><%= link_to 'Editar', edit_branch_supplier_path(@branch,supplier) , :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Borrar', branch_supplier_path(@branch, supplier), method: :delete, data: { confirm: 'Está seguro que desea borrar el proveedor?' }, :class => "btn btn-danger" %></td>
+    <td><%= link_to 'Borrar', branch_supplier_path(@branch, supplier), method: :delete, data: { confirm: 'Está seguro que desea borrar el laboratorio?' }, :class => "btn btn-danger" %></td>
   </tr>
 <% end %>
 </tbody>

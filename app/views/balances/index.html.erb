@@ -1,0 +1,31 @@
+<legend>Sucursal <%= @branch.name %> - Listado de Caja</legend>
+<%= link_to "Excel Cajas", download_balances_path(@branch, :format => "xls"), :class => "btn btn-primary pull-left" %>
+
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+	<tr>
+	    <th>Fecha</th>
+	    <th>Tipo</th>	    
+	    <th>Monto</th>
+	    <th>Descripción</th>
+	    <th>&nbsp;</th>
+  </tr>
+</thead>
+<tbody>
+<% @balances.each do | balance | %>
+  <tr>
+    <td>  <%= balance.balance_date %>    </td>
+    <td>  <%= balance.show_mov %>	</td>
+    <td>$  <%= balance.size %>	</td>
+    <td> <%= balance.description %>   </td>
+    <td>  <%= link_to 'Editar', edit_branch_balance_path(@branch, balance ), :class => "btn btn-primary"  %> </td>
+    <td>  <%= link_to 'Borrar', branch_balance_path(@branch, balance ), method: :delete, data: { confirm: 'Está seguro que desea borrar el movimiento de caja?' }, :class => "btn btn-danger"  %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<br />
+
+

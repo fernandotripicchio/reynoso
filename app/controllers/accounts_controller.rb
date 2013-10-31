@@ -86,6 +86,14 @@ class AccountsController < ApplicationController
     end
   end
   
+  def download
+    @accounts = Account.all
+    respond_to do |format|
+      format.html
+      format.xls
+    end    
+  end    
+  
   private
   
   def get_data

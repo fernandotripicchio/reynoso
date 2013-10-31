@@ -1,0 +1,9 @@
+<div id="edit_form" class="form_project">  	
+	<legend>Usuarios </legend>
+  	<%= simple_form_for @expense , :url => branch_expense_path(@branch, @expense) , :html => { :class => "form-horizontal" } do |f| %>
+  	<%= render :partial => "form", :locals => {:f => f}%>
+  	<hr />
+    <%= link_to "Cancelar", branch_expenses_path(@branch), :class => "btn btn-secundary btn-form"%>
+    <%= f.submit "Guardar", :class => "btn btn-primary btn-form"%>
+    <% end %>
+</div>
