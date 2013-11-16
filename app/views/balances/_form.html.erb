@@ -1,6 +1,7 @@
 <fieldset>	
 	<%= f.input :balance_date, :as => :ui_date_picker, :label => "Fecha",:input_html => {:value => ""}   %>
 	<%= f.association :branch, :as => :hidden, :value => @branch.id %>
+	<%= f.association :client, :collection => @clients.collect {|p| [ p.name, p.id ] },  :include_blank => true %>
 	<%= f.input :size, :placeholder => "monto" ,:label => "Monto:",  :input_html => { class: 'input-medium' }  %>
     <%= f.input :kind_of_mov, 
                 :collection => [[1, 'Ingreso'], [0, 'Egreso']], 

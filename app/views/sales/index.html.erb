@@ -7,18 +7,22 @@
 	    <th>Fecha</th>
 	    <th>Cliente</th>
 	    <th>Forma de Pago</th>
+	    <th>Cobrada</th>
 	    <th>Valor</th>   
 	  </tr>
 </thead>
 <tbody>
 <% @sales.each do | sale | %>
+<% disabled = ( sale.status) ? "disabled" : "" %>
   <tr>
   	<td><%= sale.id %></td>
   	<td><%= sale.date_sale %></td>
   	<td><%= ( !sale.client.blank? ) ? sale.client.name : "" %></td>
   	<td><%= sale.payment %></td>
+  	<td><%= sale.pagada? %></td>
     <td><%= link_to 'Editar', edit_branch_sale_path(@branch, sale), :class => "btn btn-primary"%></td>
     <td><%= link_to 'Anular', branch_sale_path(@branch,sale), method: :delete, data: { confirm: 'Está seguro que desea anular la venta?' }, :class => "btn btn-danger" %></td>
+    <td><%= link_to 'Cobrar', branch_sale_cobrar_path(@branch, sale), :class => "btn btn-primary #{disabled}"%></td>
   </tr>
 <% end %>
 </tbody>

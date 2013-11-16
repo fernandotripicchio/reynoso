@@ -50,6 +50,7 @@ class SalesController < ApplicationController
     respond_to do |format|
       if @sale.save
         @sale.decrement_stock(@branch)
+        @sale.set_status
         format.html { redirect_to branch_sales_path(@branch), notice: 'La venta se ha creado exitosamente' }
         format.json { render json: @sale, status: :created, location: @sale }
       else
@@ -89,6 +90,10 @@ class SalesController < ApplicationController
   
   def reportes
     
+  end
+  
+  def cobrar
+    @sale = Sale.find(params[:sale_id])
   end
   
   private

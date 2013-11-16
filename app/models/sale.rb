@@ -9,7 +9,7 @@ class Sale < ActiveRecord::Base
    has_many :items
    accepts_nested_attributes_for :items, :allow_destroy => true, :reject_if  => :all_blank
    
-   attr_accessible :date_sale, :branch_id, :client_id,  :payment, :comments,:items_attributes
+   attr_accessible :date_sale, :branch_id, :client_id,  :payment, :comments, :status, :items_attributes
    
    validate :date_sale, :presence => true
    
@@ -29,5 +29,14 @@ class Sale < ActiveRecord::Base
              item.product.increment_stock(size, branch)
          end
      
+   end
+   
+   def set_status
+      self.status = false if self.payment == "Cuenta Corriente"
+      self.save
+   end
+   
+   def pagada?
+       return ( self.status == true) ? "Si" : "No"
    end
 end

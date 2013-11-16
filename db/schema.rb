@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131116183629) do
+ActiveRecord::Schema.define(:version => 20131116201233) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "client_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20131116183629) do
     t.datetime "updated_at",                                                    :null => false
     t.integer  "kind_movement_id"
     t.integer  "branch_id"
+    t.integer  "client_id"
   end
 
   create_table "branches", :force => true do |t|
@@ -115,10 +116,11 @@ ActiveRecord::Schema.define(:version => 20131116183629) do
     t.date     "date_sale"
     t.integer  "branch_id"
     t.integer  "client_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.text     "comments"
     t.string   "payment"
+    t.boolean  "status",     :default => true
   end
 
   create_table "stock_logs", :force => true do |t|

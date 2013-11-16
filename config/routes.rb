@@ -12,6 +12,8 @@ Profe::Application.routes.draw do
           collection do 
              get :reportes
           end
+          get :cobrar
+          post :efectivizar_cobro
       end
       resources :clients
       resources :suppliers

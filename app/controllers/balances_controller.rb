@@ -33,6 +33,7 @@ class BalancesController < ApplicationController
     @balance = Balance.new
     @balance.balance_date = Time.now.strftime("%d/%m/%Y")
     @kind_movements = KindMovement.all
+    @clients = @branch.clients
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @balance }
@@ -42,6 +43,8 @@ class BalancesController < ApplicationController
   # GET /balances/1/edit
   def edit
     @balance = Balance.find(params[:id])
+    @clients = @branch.clients
+    @kind_movements = KindMovement.all
   end
 
   # POST /balances
