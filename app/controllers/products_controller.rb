@@ -114,6 +114,22 @@ class ProductsController < ApplicationController
       format.xls
     end    
   end  
+  
+  
+  def actualizar
+     @branchs = Branch.all
+     @products = Product.all
+     
+     @branchs.each do |branch|
+           @products.each do |product|
+              Stock.create(:product_id => product.id, :branch_id => branch.id, :size => 0, :initial_stock => 0)   
+           end
+          
+     end
+     
+     render json: "anduvo"
+      
+  end
   private
   
   def get_data

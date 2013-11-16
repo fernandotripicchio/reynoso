@@ -1,6 +1,6 @@
 class BalancesController < ApplicationController
   before_filter :current_user  
-  before_filter :get_data  
+  before_filter :get_data, :except => :filtrar_movimientos  
     
   
   layout "branch"  
@@ -32,6 +32,7 @@ class BalancesController < ApplicationController
   def new
     @balance = Balance.new
     @balance.balance_date = Time.now.strftime("%d/%m/%Y")
+    @kind_movements = KindMovement.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @balance }
@@ -94,6 +95,17 @@ class BalancesController < ApplicationController
       format.xls
     end    
   end   
+  
+  def filtrar_movimientos
+    if params[:tipo] == "Egreso"
+      @tipos = KindMovement.egreso
+    else
+      @tipos = KindMovement.ingreso  
+    end
+    
+    
+    render json: @tipos
+  end
   
   private
   

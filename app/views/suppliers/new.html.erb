@@ -1,10 +1,10 @@
 <div id="edit_form" class="form_user">  	
-	<legend>Nuevo Laboratorio:</legend>
+	<legend>Nuevo Proveedor:</legend>
 	<div class="row-horizontal">
 	  	<%= simple_form_for @supplier ,  :url => branch_suppliers_path(@branch, @supplier),:html => { :class => "form-horizontal" } do |f| %>
 	  	<%= render :partial => "form", :locals => {:f => f}%>
 	  	<hr />
-	  	<%= link_to "Cancelar", branch_products_path(@branch), :class => "btn btn-secundary btn-form"%>
+	  	<%= link_to "Cancelar", branch_suppliers_path(@branch), :class => "btn btn-secundary btn-form"%>
 	    <%= f.submit "Guardar", :class => "btn btn-primary btn-form"%>
 	    <% end %>
 	</div>

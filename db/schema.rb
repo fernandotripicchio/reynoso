@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131030211226) do
+ActiveRecord::Schema.define(:version => 20131116183629) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "client_id"
@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(:version => 20131030211226) do
 
   create_table "balances", :force => true do |t|
     t.date     "balance_date"
-    t.decimal  "size",         :precision => 8, :scale => 2
+    t.decimal  "size",             :precision => 8, :scale => 2
     t.text     "description"
-    t.integer  "kind_of_movm",                               :default => 1
-    t.datetime "created_at",                                                :null => false
-    t.datetime "updated_at",                                                :null => false
+    t.integer  "kind_of_mov",                                    :default => 1
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
+    t.integer  "kind_movement_id"
+    t.integer  "branch_id"
   end
 
   create_table "branches", :force => true do |t|
@@ -71,15 +73,33 @@ ActiveRecord::Schema.define(:version => 20131030211226) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "kind_movements", :force => true do |t|
+    t.string   "description"
+    t.boolean  "in",          :default => true
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "laboratories", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "observation"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "products", :force => true do |t|
     t.string   "name"
-    t.decimal  "cost",        :precision => 8, :scale => 2
-    t.decimal  "iva",         :precision => 8, :scale => 2
-    t.decimal  "profit",      :precision => 8, :scale => 2
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.decimal  "cost",          :precision => 8, :scale => 2
+    t.decimal  "iva",           :precision => 8, :scale => 2
+    t.decimal  "profit",        :precision => 8, :scale => 2
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.string   "code"
     t.text     "description"
+    t.integer  "laboratory_id"
   end
 
   create_table "sale_items", :force => true do |t|

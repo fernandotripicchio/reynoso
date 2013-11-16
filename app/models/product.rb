@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   
   has_many :stocks
   has_many :branches, :through => :stocks
+  belongs_to :laboratory
   
   def increment_stock(new_size, branch)
       raise "Debe ingresar cantidad" if new_size.blank?
@@ -62,15 +63,16 @@ class Product < ActiveRecord::Base
   
   
   def price_branch(stock)
-       cost = self.cost_iva
-       profit = stock.profit
+       cost = ( self.cost_iva.blank? ) ? 0 : self.cost_iva
+       profit = ( stock.profit.blank? ) ?  0 : stock.profit
+       
        price = cost  + ( (cost * profit) / 100 ) 
        return price    
   end
   
   def cost_iva
-       cost = self.cost
-       iva  = self.iva
+       cost = ( self.cost.blank? ) ? 0 : self.cost
+       iva  = ( self.iva.blank? ) ? 0 : self.iva 
        price = cost  + ( ( cost * iva) / 100 ) 
        return price    
        

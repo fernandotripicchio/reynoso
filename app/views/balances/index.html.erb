@@ -6,7 +6,8 @@
 	<thead>
 	<tr>
 	    <th>Fecha</th>
-	    <th>Tipo</th>	    
+	    <th>Tipo</th>	
+        <th>Movimiento</th>	        
 	    <th>Monto</th>
 	    <th>Descripción</th>
 	    <th>&nbsp;</th>
@@ -17,6 +18,7 @@
   <tr>
     <td>  <%= balance.balance_date %>    </td>
     <td>  <%= balance.show_mov %>	</td>
+    <td>  <%= balance.kind_movement.description %>	</td>
     <td>$  <%= balance.size %>	</td>
     <td> <%= balance.description %>   </td>
     <td>  <%= link_to 'Editar', edit_branch_balance_path(@branch, balance ), :class => "btn btn-primary"  %> </td>

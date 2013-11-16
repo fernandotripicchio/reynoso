@@ -1,10 +1,7 @@
-Profe::Application.routes.draw do
+Profe::Application.routes.draw do 
+
   
-
-
- 
-
-
+  
   #Under the branches spaces
   resources :branches do
       collection do
@@ -18,9 +15,15 @@ Profe::Application.routes.draw do
       end
       resources :clients
       resources :suppliers
+      resources :laboratories
       resources :products do
          get :edit_attributes
+         
          post :save_attributes
+         
+         collection do
+           get :actualizar
+         end
       end
       resources :stocks
       resources :users 
@@ -44,11 +47,13 @@ Profe::Application.routes.draw do
   match 'logout' => 'user_sessions#destroy', :as => :logout    
   root :to => "branches#index"
   match "elegir_branch" => "branches#elegir_branch", :as => "elegir_branch"
+  match "caja_tipo_movimientos/:tipo" => "balances#filtrar_movimientos", :as => "filtrar_movimientos"
   match "actualizar_atributos/:branch_id/:product_id/:stock_id" => "products#actualizar_atributos", :as => "actualizar_atributos"
   match 'download_products/:branch_id/' => "products#download", :as => "download_products"
   match 'download_accounts/:branch_id/' => "accounts#download", :as => "download_accounts"
   match 'download_balance/:branch_id/' => "balances#download", :as => "download_balances"
   match 'download_expense/:branch_id/' => "expenses#download", :as => "download_expenses"
+  
   
 
 end

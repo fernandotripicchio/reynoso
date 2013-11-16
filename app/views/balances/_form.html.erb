@@ -1,16 +1,15 @@
 <fieldset>	
 	<%= f.input :balance_date, :as => :ui_date_picker, :label => "Fecha",:input_html => {:value => ""}   %>
+	<%= f.association :branch, :as => :hidden, :value => @branch.id %>
 	<%= f.input :size, :placeholder => "monto" ,:label => "Monto:",  :input_html => { class: 'input-medium' }  %>
-	<%#= f.collection_radio_buttons :kind_of_movm, [[1, 'Ingreso'], [0, 'Egreso']], :first, :last,  :default => true %>
-	
-
-  <%= f.input :kind_of_movm, 
+    <%= f.input :kind_of_mov, 
                 :collection => [[1, 'Ingreso'], [0, 'Egreso']], 
                 :label_method => :last, 
                 :as => :radio_buttons,
                 :label => "Tipo de movimiento:", 
-                :checked => 'Ingreso' %>
+                :checked => 'Ingreso' ,  :input_html => { class: 'radio-ingresos' } %>
 
+   <%= f.association :kind_movement, :collection => KindMovement.ingreso.all(order: 'description').collect {|p| [ p.description, p.id ] },  :include_blank => false  %>
 	
 	<%= f.input :description, :as => :text, :placeholder => "Observaciones",:label => "Observaciones:",  :input_html => { class: 'input-xxlarge'  }  %>
     
