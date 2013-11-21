@@ -1,6 +1,7 @@
  <fieldset>	
 	<%= f.input :date_sale, :as => :ui_date_picker, :label => "Fecha",:input_html => {:value => ""}   %>
-    <%= f.association :client, :collection => Client.all(order: 'name'), :prompt => "Seleccione un Cliente", :label => "Cliente:" %>	
+    <%= f.input :branch_id, :as => :hidden, :input_html => { :value => @branch.id } %>
+    <%= f.association :client, :collection => @branch.clients.all(order: 'name'), :label => "Cliente:", :include_blank => false %>	
     <%= f.input :payment, 
                 :collection => [['efectivo', 'Efectivo'], ['tarjeta', 'Tarjeta'], ['cuenta_corriente', 'Cuenta Corriente'] ], 
                 :label_method => :last, 
@@ -12,9 +13,11 @@
      <hr>     
 
     <%= f.simple_fields_for :items do | si| %>
+
     <div class="row-fluid products">
       <%= si.association :product , :collection => @branch.products(order: 'name'), :prompt => "Seleccione un Producto", :label => "Producto:" %>    	
       <%= si.input :size, :placeholder => "cantidad", :label => "Cantidad:", :input_html => { class: 'input-small pull-left cantidad'} %>
+      <%#= si.input :price, :placeholder => "precio", :label => "Precio: $", :input_html => { :value => "#{product.price_branch(stock)}", :class => 'input-small pull-left cantidad'} %>
       <%= si.link_to_remove "Eliminar" %>      
     </div>  
     <% end %>

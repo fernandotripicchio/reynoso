@@ -7,7 +7,7 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.all
+    @sales = @branch.sales.page(params[:page]).per(20)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,4 +1,16 @@
-<legend>Sucursal <%=@branch.name%> - Listado de Ventas</legend>
+<legend>Sucursal <%=@branch.name%> - Listado de Ventas <%= link_to "Nueva Venta", new_branch_sale_path(@branch), :class => "btn btn-primary pull-right" %></legend>
+<div>
+	<form class="form-search">
+      <div class="input-append">
+        <input type="text" class="span2 search-query">
+        <button type="submit" class="btn">Buscar</button>
+      </div>
+</form>
+</div>
+
+<div class="row-fluid">
+	<%= paginate @sales %>
+</div>
 <div class="row-fluid">
 <table class="table table-striped">
 	<thead>

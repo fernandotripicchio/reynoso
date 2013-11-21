@@ -1,9 +1,24 @@
 <legend>Sucursal <%= @branch.name %> - Stocks</legend>
+
+<div>
+	<form class="form-search">
+      <div class="input-append">
+        <input type="text" class="span2 search-query">
+        <button type="submit" class="btn">Buscar</button>
+      </div>
+</form>
+</div>
+
+<div class="row-fluid">
+	<%= paginate @stocks %>
+</div>
+
 <div class="row-fluid">
 <table class="table table-striped">
 	<thead>
   <tr>
     <th>Producto</th>
+    <th>Laboratorio</th>
     <th>Stock Inicial</th>
     <th>Stock Actual</th>
   </tr>
@@ -13,6 +28,7 @@
 <% unless stock.product.blank?%>
   <tr>
   	<td><%= stock.product.name %></td>
+  	 <td><%= ( stock.product.laboratory.blank?) ? "" : stock.product.laboratory.name %>	   </td>
   	<td><%= stock.initial_stock %></td>
   	<td><%= stock.size %></td>
     <td><%= link_to 'Modificar', branch_modificar_stock_path(@branch, stock) , :class => "btn btn-primary"%></td>

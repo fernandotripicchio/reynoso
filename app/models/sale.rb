@@ -11,7 +11,7 @@ class Sale < ActiveRecord::Base
    
    attr_accessible :date_sale, :branch_id, :client_id,  :payment, :comments, :status, :items_attributes
    
-   validate :date_sale, :presence => true
+   validate :date_sale, :payment, :client , :presence => true
    
    
    def decrement_stock(branch)

@@ -18,6 +18,8 @@ gem 'prawn_rails'
 gem "nested_form"
 
 gem 'sass-rails',   '~> 3.2.3'
+gem "kaminari"
+
 group :assets do
       
       gem 'coffee-rails', '~> 3.2.1'

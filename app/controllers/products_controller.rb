@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = @branch.products
+    @products = @branch.products.page(params[:page]).per(20)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -134,6 +134,6 @@ class ProductsController < ApplicationController
   
   def get_data
     @branch = Branch.find(params[:branch_id])
-    @laboratories = Laboratory.all
+    @laboratories = Laboratory.order("name").all
   end
 end
