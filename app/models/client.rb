@@ -8,4 +8,12 @@ class Client < ActiveRecord::Base
    
    validates :name, :presence => true
    
+   
+   #TODO Falta filtrar que no tenga account
+   
+   
+   def has_account?
+       return !self.account.blank?       
+   end
+   
 end

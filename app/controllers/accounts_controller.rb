@@ -45,10 +45,12 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.json
   def create
-    @account = Account.new(params[:account])
-
+    @account = 
+    @account = Account.new(params[:account])    
+    
+    
     respond_to do |format|
-      if @account.save
+      if @account.create_update_account
         format.html { redirect_to branch_accounts_path(@branch), notice: 'Se creo la cuenta corriente.' }
         format.json { render json: @account, status: :created, location: @account }
       else

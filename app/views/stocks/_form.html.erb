@@ -1,8 +1,8 @@
-<fieldset>	
+<fieldset>
+	
 	<%= f.association :product, :collection => @branch.products(order: 'name'), :prompt => "Seleccione un producto", :label => "Producto" %>
     <% if editar %>
        <%= f.input :kind_movement, :collection => ["Incremento", "Descuento"], :label => "Tipo:"  %>    
     <% end %>	
-	<%= f.input :size, :placeholder => "cantidad",:label => "Cantidad:",  :input_html => { class: 'input-small'  }  %>
-    
+	<%= f.input :size, :placeholder => "cantidad",:label => "Cantidad:",  :input_html => { class: 'input-small'  }  %>    
 </fieldset>  

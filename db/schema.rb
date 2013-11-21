@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131116201233) do
+ActiveRecord::Schema.define(:version => 20131121190735) do
+
+  create_table "account_logs", :force => true do |t|
+    t.integer  "account_id"
+    t.date     "log_date"
+    t.decimal  "value",      :precision => 8, :scale => 2
+    t.string   "user"
+    t.boolean  "in",                                       :default => true
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+  end
 
   create_table "accounts", :force => true do |t|
     t.integer  "client_id"
@@ -101,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20131116201233) do
     t.string   "code"
     t.text     "description"
     t.integer  "laboratory_id"
+    t.integer  "supplier_id"
   end
 
   create_table "sale_items", :force => true do |t|

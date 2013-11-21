@@ -1,5 +1,6 @@
 <fieldset>	
 	<%= f.input :name, :placeholder => "nombre", :label => "Nombre:", :input_html => { class: 'input-xxlarge'  }  %>
+	<%= f.association :laboratory, :label => "Laboratorio", :collection => @laboratories.collect {|p| [ p.name, p.id ] },  :include_blank => false %>
 	<%= f.input :code, :placeholder => "codigo",:label => "Codigo:",  :input_html => { class: 'input-small'  }  %>
 	<%= f.input :cost, :placeholder => "costo original",:label => "Costo Original:",  :input_html => { class: 'input-small'  }  %>
     <%= f.input :iva, :placeholder => "iva",:label => "IVA:",  :input_html => { class: 'input-small'  }  %>

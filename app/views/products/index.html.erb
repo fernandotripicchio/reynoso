@@ -6,6 +6,7 @@
 	<thead>
 	<tr>
 	    <th>Producto</th>
+	    <th>Laboratorio</th>
 	    <th>Codigo</th>
 	    <th>Costo</th>
 	    <th>IVA</th>
@@ -22,7 +23,9 @@
   <% stock = product.get_stock(@branch)%>
   <tr>
     <td><%= product.name %>    </td>
+    <td><%= ( product.laboratory.blank?) ? "" : product.laboratory.name %>	   </td>
     <td><%= product.code %>	   </td>
+    
     <td>$ <%= product.cost %>  </td>
     <td><%= product.iva %> %   </td>
     <td>$ <%= product.cost_iva %> </td>

@@ -1,6 +1,9 @@
 <div id="edit_form" class="form_user">  	
 	<legend>Sucursarl <%= @branch.name %> - Modificar Stock:</legend>
 	<div class="row-horizontal">
+		<label> Producto :  	<%=@stock.product.name%> </label>
+	</div>
+	<div class="row-horizontal">
 	  	<%= simple_form_for @stock, :url => branch_new_actualizar_stock_path(@branch, @product) ,  :html => { :class => "form-horizontal" } do |f| %>
         <fieldset>	
   	        <%= f.input :kind_movement, :collection => ["Incremento", "Descuento"], :label => "Tipo:"  %>   

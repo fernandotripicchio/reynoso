@@ -10,12 +10,16 @@
 </thead>
 <tbody>
 <% @stocks.each do |stock| %>
+<% unless stock.product.blank?%>
   <tr>
   	<td><%= stock.product.name %></td>
   	<td><%= stock.initial_stock %></td>
   	<td><%= stock.size %></td>
     <td><%= link_to 'Modificar', branch_modificar_stock_path(@branch, stock) , :class => "btn btn-primary"%></td>
   </tr>
+ <% else %>
+ <% #raise "#{stock.id}"%> 
+<% end %>  
 <% end %>
 </tbody>
 </table>

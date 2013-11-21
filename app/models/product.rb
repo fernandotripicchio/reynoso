@@ -1,10 +1,11 @@
 class Product < ActiveRecord::Base
-  attr_accessible :name, :price, :iva, :profit, :code, :cost, :description
+  attr_accessible :name, :price, :iva, :profit, :code, :cost, :description, :laboratory_id
   validates  :name, :cost, :iva, :presence => true
   
   has_many :stocks
   has_many :branches, :through => :stocks
   belongs_to :laboratory
+  belongs_to :supplier
   
   def increment_stock(new_size, branch)
       raise "Debe ingresar cantidad" if new_size.blank?

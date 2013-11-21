@@ -134,5 +134,6 @@ class ProductsController < ApplicationController
   
   def get_data
     @branch = Branch.find(params[:branch_id])
+    @laboratories = Laboratory.all
   end
 end
