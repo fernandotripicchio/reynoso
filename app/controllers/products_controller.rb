@@ -126,10 +126,36 @@ class ProductsController < ApplicationController
            end
           
      end
-     
      render json: "anduvo"
-      
   end
+  
+  def import
+   @product = Product.new  
+  end
+  
+  def save_import
+       Product.transaction do
+
+         unless params[:excel_file].blank?
+                @products = Product.import( params[:excel_file] )
+                
+                
+                # if @participants[:result]
+                    # if @project.assign_participants(@participants[:participants])
+                         # flash[:notice] = "The users were successfully imported. "
+                         # redirect_to branch_import_products_path(@branch)
+                    # end
+                # else
+                   # flash[:error] = @participants[:errors]
+                   # redirect_to branch_import_products_path(@branch)
+                # end
+        else
+               flash[:error] = "Please attach a excel file"         
+               redirect_to branch_import_products_path(@branch)
+        end   
+       end #Transaction      
+  end
+  
   private
   
   def get_data

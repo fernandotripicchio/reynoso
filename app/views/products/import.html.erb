@@ -1,0 +1,9 @@
+ <legend> Importar Productos </legend>
+ <div class="form_project row-fluid" >
+    <%= form_for @product, :url => branch_save_import_products_path(@branch),:html => {  :multipart => true, :class => "form-horizontal" } do |f| %>
+      	<div class="control-group" style="margin-left: 30px">
+        	     <%=file_field_tag 'excel_file'%>      
+        	     <%=f.button "Importar Productos", :class => "btn btn-primary "%>  	    
+       	</div>   
+   <% end %>   
+</div>

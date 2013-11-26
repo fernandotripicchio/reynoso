@@ -40,6 +40,9 @@ Profe::Application.routes.draw do
       match 'filtrar_stock/:branch_id/' => "stocks#filtrar_stock", :as => "filtrar_stock"
       
       match "selected_branch/:branch_id" => "branches#selected_branch", :as => "selected_branch"
+
+       match 'import_products' => "products#import", :as => "import_products"
+       match 'save_import_products' => "products#save_import", :as => "save_import_products"
       
 
   end       
@@ -55,6 +58,10 @@ Profe::Application.routes.draw do
   match 'download_accounts/:branch_id/' => "accounts#download", :as => "download_accounts"
   match 'download_balance/:branch_id/' => "balances#download", :as => "download_balances"
   match 'download_expense/:branch_id/' => "expenses#download", :as => "download_expenses"
+  
+  match 'import_products' => "products#import", :as => "import_products"
+  match 'save_import_products' => "products#save_import", :as => "save_import_products"
+  
   
   
 

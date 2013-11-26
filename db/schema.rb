@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121190735) do
+ActiveRecord::Schema.define(:version => 20131122034236) do
 
   create_table "account_logs", :force => true do |t|
     t.integer  "account_id"
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(:version => 20131121190735) do
     t.datetime "updated_at",                                                            :null => false
     t.integer  "suplier_id"
     t.string   "kind_movement",                               :default => "Incremento"
-    t.integer  "profit"
+    t.text     "profit"
     t.integer  "initial_stock"
     t.integer  "temporal_size"
   end
