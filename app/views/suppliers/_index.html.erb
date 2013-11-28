@@ -1,0 +1,37 @@
+<div>
+  	<%= simple_form_for :keys , :url => search_branch_suppliers_path(@branch) ,:html => { :class => "form-search" } do |f| %>
+      <div class="input-append">
+        <input type="text" name="keys" class="span18 search-query" value="<%= @keys%>">
+        <button type="submit" class="btn">Buscar</button>
+      </div>
+    <% end %> 
+</div>
+
+<div class="row-fluid">
+	<%= paginate @suppliers %>
+</div>
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Télefono</th>
+    <th>Email</th>
+  </tr>
+</thead>
+<tbody>
+<% @suppliers.each do |supplier| %>
+  <tr>
+  	<td><%= supplier.name %></td>
+  	<td><%= supplier.phone %></td>
+  	<td><%= supplier.email %></td>
+    <td><%= link_to 'Editar', edit_branch_supplier_path(@branch,supplier) , :class => "btn btn-primary"%></td>
+    <td><%= link_to 'Borrar', branch_supplier_path(@branch, supplier), method: :delete, data: { confirm: 'Está seguro que desea borrar el proveedor?' }, :class => "btn btn-danger" %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+<div class="row-fluid">
+	<%= paginate @suppliers %>
+</div>

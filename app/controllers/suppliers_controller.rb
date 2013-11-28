@@ -7,12 +7,17 @@ class SuppliersController < ApplicationController
   # GET /suppliers
   # GET /suppliers.json
   def index
-    @suppliers = Supplier.all
+    @suppliers = Supplier.page(params[:page]).per(20)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @suppliers }
     end
+  end
+  
+  def search
+     @keys      =  params[:keys] || ""
+     @suppliers = Supplier.where("name ilike ? ", "%"+ @keys +"%").page(params[:page]).per(20)
   end
 
   # GET /suppliers/1

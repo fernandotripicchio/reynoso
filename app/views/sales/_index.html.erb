@@ -1,0 +1,42 @@
+<div>
+  	<%= simple_form_for :keys , :url => search_branch_sales_path(@branch) ,:html => { :class => "form-search" } do |f| %>
+      <div class="input-append">
+        <input type="text" name="keys" class="span18 search-query" value="<%= @keys%>">
+        <button type="submit" class="btn">Buscar</button>
+      </div>
+    <% end %> 
+</div>
+
+<div class="row-fluid">
+	<%= paginate @sales %>
+</div>
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+	  <tr>
+	  	<th>Nro</th>
+	    <th>Fecha</th>
+	    <th>Cliente</th>
+	    <th>Forma de Pago</th>
+	    <th>Cobrada</th>
+	    <th>Valor</th>   
+	  </tr>
+</thead>
+<tbody>
+<% @sales.each do | sale | %>
+<% disabled = ( sale.status) ? "disabled" : "" %>
+  <tr>
+  	<td><%= sale.id %></td>
+  	<td><%= sale.date_sale %></td>
+  	<td><%= ( !sale.client.blank? ) ? sale.client.name : "" %></td>
+  	<td><%= sale.payment %></td>
+  	<td><%= sale.pagada? %></td>
+    <td><%= link_to 'Editar', edit_branch_sale_path(@branch, sale), :class => "btn btn-primary"%></td>
+    <td><%= link_to 'Anular', branch_sale_path(@branch,sale), method: :delete, data: { confirm: 'Está seguro que desea anular la venta?' }, :class => "btn btn-danger" %></td>
+    <td><%= link_to 'Cobrar', branch_sale_cobrar_path(@branch, sale), :class => "btn btn-primary #{disabled}"%></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+

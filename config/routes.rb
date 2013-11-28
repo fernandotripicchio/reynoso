@@ -11,12 +11,17 @@ Profe::Application.routes.draw do
       resources :sales do
           collection do 
              get :reportes
+             post :search
           end
           get :cobrar
           post :efectivizar_cobro
       end
       resources :clients
-      resources :suppliers
+      resources :suppliers do
+         collection do 
+              post :search
+         end
+      end
       resources :laboratories
       resources :products do
          get :edit_attributes

@@ -7,13 +7,18 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = @branch.sales.page(params[:page]).per(20)
-
+    @sales    = @branch.sales.page(params[:page]).per(20)
+    @keys     =  ""
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sales }
     end
   end
+  
+  def search
+     @keys     =  params[:keys] || ""
+     @sales = @branch.sales.includes(:client).where("clients.name ilike ? ", "%"+ @keys +"%").page(params[:page]).per(20)
+  end  
 
   # GET /sales/1
   # GET /sales/1.json
