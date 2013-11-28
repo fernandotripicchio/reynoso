@@ -1,0 +1,56 @@
+<div class="row-fluid">   
+  	<%= simple_form_for :keys , :url => search_branch_products_path(@branch) ,:html => { :class => "form-search" } do |f| %>
+      <div class="input-append">
+        <input type="text" name="keys" class="span18 search-query" value="<%= @keys%>">
+        <button type="submit" class="btn">Buscar</button>
+      </div>
+    <% end %>   
+</div>
+
+<div class="row-fluid">
+	<%= paginate @products %>
+</div>
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+	<tr>
+	    <th>Producto</th>
+	    <th>Laboratorio</th>
+	    <th>Codigo</th>
+	    <th>Costo</th>
+	    <th>IVA</th>
+	    <th>Costo con Iva</th>
+	    <th>Ganancia</th>
+	    <th>Precio Venta </th>
+	    <th>Stock Inicial</th>
+	    <th>Stock </th>
+	    <th></th>
+  </tr>
+</thead>
+<tbody>
+<% @products.each do |product| %>
+  <% stock = product.get_stock(@branch)%>
+  <tr>
+    <td><%= product.name %>    </td>
+    <td><%= ( product.laboratory.blank?) ? "" : product.laboratory.name %>	   </td>
+    <td><%= product.code %>	   </td>
+    
+    <td>$ <%= product.cost %>  </td>
+    <td><%= product.iva %> %   </td>
+    <td>$ <%= product.cost_iva %> </td>
+    <td><%= stock.profit %>   %   </td>
+    <td>$ <%= product.price_branch(stock) %>   </td>
+    <td><%= stock.initial_stock %>   </td>
+    <td><%= stock.size %>   </td>
+    <td><%= link_to 'Editar', edit_branch_product_path(@branch, product), :class => "btn btn-primary"  %> </td>
+    <td><%= link_to 'Stock', branch_product_edit_attributes_path(@branch, product), :class => "btn btn-primary"  %> </td>
+    <td><%= link_to 'Borrar', branch_product_path(@branch, product), method: :delete, data: { confirm: 'Está seguro que desea borrar el producto?' }, :class => "btn btn-danger"  %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
+
+<div class="row-fluid">
+	<%= paginate @products %>
+</div>

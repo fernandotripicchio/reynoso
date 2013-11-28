@@ -23,8 +23,10 @@ Profe::Application.routes.draw do
          
          post :save_attributes
          
+         
          collection do
            get :actualizar
+           post :search
          end
       end
       resources :stocks

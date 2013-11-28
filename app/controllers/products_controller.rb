@@ -8,13 +8,19 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = @branch.products.page(params[:page]).per(20)
-
+    @keys = ""
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @products }
     end
   end
 
+  def search
+     @keys     =  params[:keys] 
+     @products = @branch.products.where("products.name ilike ? ", "%"+ @keys +"%").page(params[:page]).per(20)
+     
+  end
+  
   # GET /products/1
   # GET /products/1.json
   def show
