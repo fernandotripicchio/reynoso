@@ -9,11 +9,18 @@ class StocksController < ApplicationController
   # GET /stocks.json
   def index
     @stocks = @branch.stocks.page(params[:page]).per(20)
+    @keys     =  params[:keys] || ""
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @stocks }
     end
   end
+  
+  def search
+     @keys     =  params[:keys] || ""
+     @stocks = @branch.stocks.includes(:product).where("products.name ilike ? ", "%"+ @keys +"%").page(params[:page]).per(20)
+  end
+  
 
   # GET /stocks/1
   # GET /stocks/1.json

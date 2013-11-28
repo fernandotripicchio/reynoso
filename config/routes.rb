@@ -29,7 +29,11 @@ Profe::Application.routes.draw do
            post :search
          end
       end
-      resources :stocks
+      resources :stocks do
+         collection do
+           post :search
+         end
+      end
       resources :users 
       resources :expenses
       resources :balances

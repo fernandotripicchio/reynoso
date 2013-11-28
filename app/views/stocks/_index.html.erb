@@ -1,0 +1,46 @@
+<div>
+  	<%= simple_form_for :keys , :url => search_branch_stocks_path(@branch) ,:html => { :class => "form-search" } do |f| %>
+      <div class="input-append">
+        <input type="text" name="keys" class="span18 search-query" value="<%= @keys%>">
+        <button type="submit" class="btn">Buscar</button>
+      </div>
+    <% end %> 
+</div>
+
+<div class="row-fluid">
+	<%= paginate @stocks %>
+</div>
+
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+  <tr>
+    <th>Producto</th>
+    <th>Laboratorio</th>
+    <th>Stock Inicial</th>
+    <th>Stock Actual</th>
+  </tr>
+</thead>
+<tbody>
+<% @stocks.each do |stock| %>
+<% unless stock.product.blank?%>
+  <tr>
+  	<td><%= stock.product.name %></td>
+  	 <td><%= ( stock.product.laboratory.blank?) ? "" : stock.product.laboratory.name %>	   </td>
+  	<td><%= stock.initial_stock %></td>
+  	<td><%= stock.size %></td>
+    <td><%= link_to 'Modificar', branch_modificar_stock_path(@branch, stock) , :class => "btn btn-primary"%></td>
+  </tr>
+ <% else %>
+ <% #raise "#{stock.id}"%> 
+<% end %>  
+<% end %>
+
+</tbody>
+</table>
+
+</div>
+
+<div class="row-fluid">
+	<%= paginate @stocks %>
+</div>

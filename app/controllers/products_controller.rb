@@ -18,7 +18,6 @@ class ProductsController < ApplicationController
   def search
      @keys     =  params[:keys] 
      @products = @branch.products.where("products.name ilike ? ", "%"+ @keys +"%").page(params[:page]).per(20)
-     
   end
   
   # GET /products/1
