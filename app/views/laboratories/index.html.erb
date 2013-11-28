@@ -1,23 +1,2 @@
-<legend>Proveedores</legend>
-<div class="row-fluid">
-<table class="table table-striped">
-	<thead>
-  <tr>
-    <th>Nombre</th>
-    <th>Télefono</th>
-    <th>Email</th>
-  </tr>
-</thead>
-<tbody>
-<% @laboratories.each do | laboratory | %>
-  <tr>
-  	<td><%= laboratory.name %></td>
-  	<td><%= laboratory.phone %></td>
-  	<td><%= laboratory.email %></td>
-    <td><%= link_to 'Editar', edit_branch_laboratory_path(@branch,laboratory) , :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Borrar', branch_laboratory_path(@branch, laboratory), method: :delete, data: { confirm: 'Está seguro que desea borrar el laboratorio?' }, :class => "btn btn-danger" %></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
-
+<legend>Laboratorios</legend>
+<%= render :partial => "index"%>

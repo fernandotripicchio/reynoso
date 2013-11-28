@@ -7,7 +7,7 @@ class LaboratoriesController < ApplicationController
   # GET /laboratories
   # GET /laboratories.json
   def index
-    @laboratories = Laboratory.all
+    @laboratories = Laboratory.page(params[:page]).per(20)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,6 +15,11 @@ class LaboratoriesController < ApplicationController
     end
   end
 
+
+  def search
+     @keys      =  params[:keys] || ""
+     @laboratories = Laboratory.where("name ilike ? ", "%"+ @keys +"%").page(params[:page]).per(20)
+  end
   # GET /laboratories/1
   # GET /laboratories/1.json
   def show

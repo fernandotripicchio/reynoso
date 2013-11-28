@@ -22,7 +22,11 @@ Profe::Application.routes.draw do
               post :search
          end
       end
-      resources :laboratories
+      resources :laboratories do
+         collection do 
+              post :search
+         end
+      end
       resources :products do
          get :edit_attributes
          
