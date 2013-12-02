@@ -17,6 +17,7 @@
         user.save
     end
     
+    Branch.create( [{ name: "San Luis"},{ name: "Santa Fe"}])
     kind_movements = KindMovement.all
     
     if kind_movements.size == 0 
