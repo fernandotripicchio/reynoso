@@ -1,13 +1,44 @@
 class Account < ActiveRecord::Base
    belongs_to :client
-   attr_accessible :comments, :client_id, :mount
+   has_many :account_logs
    
-   validates :mount, :client_id,:presence => true
+   accepts_nested_attributes_for :account_logs, :allow_destroy => true, :reject_if  => :all_blank
+
+   attr_accessible :comments, :client_id, :mount, :account_logs_attributes
    
+   validates :mount, :presence => true
    
-   def create_update_accountend
+
+   def new_movement(params)
+
+      value = params[:value]
+      tipo_in = params[:in]
+      desc  = params[:description]
+      self.mount = 0 if self.mount.blank?
+      if  tipo_in == "Ingreso"
+          self.mount  =  self.mount  + value.to_i
+      else
+          self.mount  =  self.mount  - value.to_i
+      end
+      
+      account_log = AccountLog.new
+      account_log.description =  desc
+      account_log.in =  tipo_in
+      account_log.value =  value
+      
+      self.account_logs << account_log
+      
+   end
+   
+   def create_update_account
       client =  self.client
-      raise "#{client.to_json}"  
+      if client.has_account?
+          account = client. account
+      else
+          account = Account.new
+      end  
+      
+      
    end
    
    

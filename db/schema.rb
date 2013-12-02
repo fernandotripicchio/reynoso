@@ -11,16 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122034236) do
+ActiveRecord::Schema.define(:version => 20131202020325) do
 
   create_table "account_logs", :force => true do |t|
     t.integer  "account_id"
     t.date     "log_date"
-    t.decimal  "value",      :precision => 8, :scale => 2
+    t.decimal  "value",       :precision => 8, :scale => 2
     t.string   "user"
-    t.boolean  "in",                                       :default => true
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
+    t.boolean  "in",                                        :default => true
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+    t.text     "description"
   end
 
   create_table "accounts", :force => true do |t|

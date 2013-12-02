@@ -1,5 +1,23 @@
 <fieldset>	
-	<%= f.association :client, :as => :string, :label => "Cliente", :readonly => true %>
-	<%= f.input :mount, :placeholder => "saldo",:label => "Saldo:",  :input_html => { class: 'input-small'  }  %>
-	<%= f.input :comments, :as => :text, :placeholder => "Observaciones",:label => "Observaciones:",  :input_html => { :rows => '10', class: 'input-xxlarge'  }  %>    
+	<%= f.association :client, :as => :string, :label => "Cliente", :readonly => true , :input_html => {:value => @account.client.name }%>
+	<%= f.input :mount, :placeholder => "saldo",:label => "Saldo:",  :input_html => { class: 'input-small', readonly: true  }  %>
+    <%= f.simple_fields_for :account_logs do | si| %>
+    <% if si.object.new_record? %>
+     <div class="row-fluid products">
+       <%= si.input :in, 
+                    :as => :radio_buttons, 
+                    :collection => [[1, 'Ingreso'], [0, 'Egreso']],
+                    :label_method => :last, 
+                    :checked => 'Ingreso', 
+                    :label => "Tipo:" %>        	
+     	
+     </div>
+     <div class="row-fluid products">
+       <%= si.input :value , :prompt => "Monto", :label => "Monto:", :input_html => { class: 'input-small'} %>   
+    </div>  
+    <div class="row-fluid products">
+	  <%= si.input :description, :as => :text, :placeholder => "Observaciones",:label => "Observaciones:",  :input_html => { :rows => '10', class: 'input-xxlarge'  }  %>    	
+    </div>
+    <% end %>
+    <% end %>	
 </fieldset>  

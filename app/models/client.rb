@@ -16,4 +16,13 @@ class Client < ActiveRecord::Base
        return !self.account.blank?       
    end
    
+   def set_account(params)
+        if self.has_account?
+           account = self.account
+        else
+           account = Account.new  
+        end
+        account
+   end
+   
 end

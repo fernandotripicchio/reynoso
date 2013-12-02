@@ -19,7 +19,6 @@ class AccountsController < ApplicationController
   # GET /accounts/1.json
   def show
     @account = Account.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @account }
@@ -30,7 +29,8 @@ class AccountsController < ApplicationController
   # GET /accounts/new.json
   def new
     @account = Account.new
-
+    @account.mount = 0
+    @account.account_logs.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @account }
@@ -40,17 +40,18 @@ class AccountsController < ApplicationController
   # GET /accounts/1/edit
   def edit
     @account = Account.find(params[:id])
+    @account.account_logs.build
   end
 
   # POST /accounts
   # POST /accounts.json
   def create
-    @account = 
-    @account = Account.new(params[:account])    
-    
-    
+    client =  Client.find(params[:account][:client_id])    
+    @account = client.set_account(params[:account])
+    @account.new_movement(params[:account][:account_logs_attributes]["0"])  
+    @account.client = client    
     respond_to do |format|
-      if @account.create_update_account
+      if @account.save
         format.html { redirect_to branch_accounts_path(@branch), notice: 'Se creo la cuenta corriente.' }
         format.json { render json: @account, status: :created, location: @account }
       else
@@ -64,9 +65,10 @@ class AccountsController < ApplicationController
   # PUT /accounts/1.json
   def update
     @account = Account.find(params[:id])
-
+    
+    @account.new_movement(params[:account][:account_logs_attributes].first.second)
     respond_to do |format|
-      if @account.update_attributes(params[:account])
+      if @account.save
         format.html { redirect_to branch_accounts_path(@branch), notice: 'Se modifico la cuenta corriente' }
         format.json { head :no_content }
       else
@@ -100,5 +102,6 @@ class AccountsController < ApplicationController
   
   def get_data
     @branch = Branch.find(params[:branch_id])
+    @clients = Client.all(order: 'name')
   end
 end
