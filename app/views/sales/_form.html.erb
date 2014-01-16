@@ -9,6 +9,9 @@
                 :label => "Forma de Pago:", 
                 :checked => 'efectivo' %>
           
+     <div id="remitoField" style="display: none">
+     	     <%= f.input :remito, :label => "Remito", :placeholder => "remito", :input_html => { class: 'input-small'}%>     
+     </div>     
      <legend>Productos </legend>
      <hr>     
 

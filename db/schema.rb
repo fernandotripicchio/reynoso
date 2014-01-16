@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131202020325) do
+ActiveRecord::Schema.define(:version => 20131210001423) do
 
   create_table "account_logs", :force => true do |t|
     t.integer  "account_id"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20131202020325) do
     t.text     "comments"
     t.string   "payment"
     t.boolean  "status",     :default => true
+    t.string   "remito"
   end
 
   create_table "stock_logs", :force => true do |t|

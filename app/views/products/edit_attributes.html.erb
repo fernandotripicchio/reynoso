@@ -3,7 +3,7 @@
 	<% @stock = @product.get_stock(@branch)%>
 	<div class="row-horizontal">
 	  	<%= simple_form_for @stock , :url => actualizar_atributos_path(@branch, @product, @stock) ,:html => { :class => "form-horizontal" } do |f| %>
-	  	<%= f.input :profit, :placeholder => "ganancia ", :label => "Ganancia:", :input_html => { class: 'input-small'  }  %>
+	  	<%= f.input :profit, :as => :text, :placeholder => "ganancia", :label => "Ganancia:", :input_html => { class: 'input-small' , :rows => 1 }  %>
 	  	<%= f.input :initial_stock, :placeholder => "stock inicial ", :label => "Stock Inicial:", :input_html => { class: 'input-small'  }  %>
 	  	
 	  	<hr />

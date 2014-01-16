@@ -9,7 +9,7 @@ class Sale < ActiveRecord::Base
    has_many :items
    accepts_nested_attributes_for :items, :allow_destroy => true, :reject_if  => :all_blank
    
-   attr_accessible :date_sale, :branch_id, :client_id,  :payment, :comments, :status, :items_attributes
+   attr_accessible :date_sale, :branch_id, :client_id,  :payment, :comments, :status, :items_attributes, :remito
    
    validate :date_sale, :payment, :client , :presence => true
    
