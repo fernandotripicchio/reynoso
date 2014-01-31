@@ -55,6 +55,7 @@ class StocksController < ApplicationController
   # POST /stocks
   # POST /stocks.json
   def update_stock
+
     @product = Product.find(params[:stock][:product_id])
     if ( !params[:stock][:kind_movement].blank? && params[:stock][:kind_movement] == "Descuento")
         @product.decrement_stock( params[:stock][:size],  @branch.id)
@@ -62,7 +63,7 @@ class StocksController < ApplicationController
         @product.increment_stock( params[:stock][:size],  @branch.id)
     end
     
-    redirect_to branch_stocks_path(@branch), notice: 'Se agrego el stock correctamente' 
+    redirect_to branch_stocks_path(@branch), notice: "Se modifico el  stock correctamente, para el producto #{@product.name}" 
 
   end
   
@@ -74,15 +75,16 @@ class StocksController < ApplicationController
   
   
   def actualizar_stock
+        
     @product = Product.find(params[:product_id])
     if ( !params[:stock][:kind_movement].blank? && params[:stock][:kind_movement] == "Descuento")
-        @product.decrement_stock( params[:stock][:temporal_size],  @branch.id)
+        @product.decrement_stock( params[:stock][:temporal_size],  @branch.id, @current_user.id)
     else
 
-        @product.increment_stock( params[:stock][:temporal_size],  @branch.id)
+        @product.increment_stock( params[:stock][:temporal_size],  @branch.id, @current_user.id)
     end
     
-    redirect_to branch_stocks_path(@branch), notice: 'Se agrego el stock correctamente' 
+    redirect_to branch_stocks_path(@branch),notice: "Se modifico el  stock correctamente, para el producto #{@product.name}" 
 
   end
 

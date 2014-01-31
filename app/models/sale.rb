@@ -27,8 +27,7 @@ class Sale < ActiveRecord::Base
          items.each do |item|
              size = item.size
              item.product.increment_stock(size, branch)
-         end
-     
+         end     
    end
    
    def set_status

@@ -7,8 +7,8 @@ class Product < ActiveRecord::Base
   belongs_to :laboratory
   belongs_to :supplier
   
-  def increment_stock(new_size, branch)
-      raise "Debe ingresar cantidad" if new_size.blank?
+  def increment_stock(size, branch, user)
+      raise "Debe ingresar cantidad" if size.blank?
       raise "Debe ingresar una sucursal" if branch.blank?
       
       #Obtengo el stock actual
@@ -19,10 +19,16 @@ class Product < ActiveRecord::Base
          stock.branch_id = branch
          stock.size = size
       else
-         cantidad = (stock.size + new_size.to_i)
-         #raise "#{new_size} - #{stock.size} - #{cantidad}"
+         cantidad = (stock.size + size.to_i)
          stock.size =   cantidad
       end
+      
+      stock_log = StockLog.new
+      stock_log.user_id = user
+      stock_log.size = size
+      stock_log.type = "Incremento"
+      stock_log.description = "Se incrementa el stock en #{size} unidades"      
+      stock.stock_logs << stock_log
       
       stock.save!
       return stock     
@@ -30,7 +36,7 @@ class Product < ActiveRecord::Base
   end
   
   
-  def decrement_stock(size, branch)
+  def decrement_stock(size, branch, user)
       raise "Debe ingresar cantidad" if size.blank?
       raise "Debe ingresar una sucursal" if branch.blank?
       
@@ -44,7 +50,14 @@ class Product < ActiveRecord::Base
       else
          stock.size = stock.size - size.to_i  
       end
-      
+
+      stock_log = StockLog.new
+      stock_log.user_id = user
+      stock_log.size = size
+      stock_log.type = "Descuento"
+      stock_log.description = "Se baja el stock en #{size} unidades"      
+      stock.stock_logs << stock_log
+            
       stock.save!
       return stock     
       

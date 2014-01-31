@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates_format_of :email, :with => /.+@.+\..+/
   
+  has_many :stock_logs
+  
 end

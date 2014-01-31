@@ -18,6 +18,7 @@
     <th>Producto</th>
     <th>Laboratorio</th>
     <th>Stock Inicial</th>
+    <th>Canti Minima</th>    
     <th>Stock Actual</th>
   </tr>
 </thead>
@@ -28,6 +29,7 @@
   	<td><%= stock.product.name %></td>
   	 <td><%= ( stock.product.laboratory.blank?) ? "" : stock.product.laboratory.name %>	   </td>
   	<td><%= stock.initial_stock %></td>
+    <td><%= stock.minimum %></td>  	
   	<td><%= stock.size %></td>
     <td><%= link_to 'Modificar', branch_modificar_stock_path(@branch, stock) , :class => "btn btn-primary"%></td>
   </tr>
