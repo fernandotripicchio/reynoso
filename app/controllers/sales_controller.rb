@@ -54,9 +54,9 @@ class SalesController < ApplicationController
     @sale.date_sale = params[:sale][:date_sale].to_time.strftime("%d/%m/%Y")
     respond_to do |format|
       if @sale.save
-        @sale.decrement_stock(@branch)
+        @sale.decrement_stock(@branch, @current_user)
         @sale.set_status
-        format.html { redirect_to branch_sales_path(@branch), notice: 'La venta se ha creado exitosamente' }
+        format.html { redirect_to branch_sales_path(@branch), notice: "La venta #{@sale.id} se ha creado exitosamente" }
         format.json { render json: @sale, status: :created, location: @sale }
       else
         format.html { render action: "new" }
@@ -72,7 +72,7 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.update_attributes(params[:sale])
-        format.html { redirect_to branch_sales_path(@branch), notice: 'La venta se modifico con exito' }
+        format.html { redirect_to branch_sales_path(@branch), notice: "La venta #{@sale.id} se ha modificado exitosamente" }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -86,7 +86,7 @@ class SalesController < ApplicationController
   def destroy
     @sale = Sale.find(params[:id])
     @sale.destroy
-    @sale.increment_stock(@branch)
+    @sale.increment_stock(@branch, @current_user)
     respond_to do |format|
       format.html { redirect_to branch_sales_path(@branch) }
       format.json { head :no_content }
@@ -99,6 +99,10 @@ class SalesController < ApplicationController
   
   def cobrar
     @sale = Sale.find(params[:sale_id])
+  end
+  
+  def efectivizar_cobro
+    
   end
   
   private

@@ -1,7 +1,8 @@
 class Item < ActiveRecord::Base
    belongs_to :sale
    belongs_to :product
-   attr_accessible :size, :sale_id, :product_id
+   belongs_to :stock
+   attr_accessible :size, :sale_id, :product_id, :stock_id
    
-   validates :size, :product, :presence => true
+   validates :size, :stock, :presence => true
 end

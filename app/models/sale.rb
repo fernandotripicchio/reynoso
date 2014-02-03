@@ -14,19 +14,19 @@ class Sale < ActiveRecord::Base
    validate :date_sale, :payment, :client , :presence => true
    
    
-   def decrement_stock(branch)
+   def decrement_stock(branch, user)
          items = self.items
          items.each do |item|
              size = item.size
-             item.product.decrement_stock(size, branch)
+             item.stock.product.decrement_stock(size, branch, user.id)
          end
    end
    
-   def increment_stock(branch)
+   def increment_stock(branch, user)
          items = self.items
          items.each do |item|
              size = item.size
-             item.product.increment_stock(size, branch)
+             item.stock.product.increment_stock(size, branch, user.id)
          end     
    end
    

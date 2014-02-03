@@ -1,5 +1,5 @@
 <div id="edit_form" class="form_user">  	
-	<legend>Sucursal <%=@branch.name %> - Editar Venta:</legend>
+	<legend>Sucursal <%=@branch.name %> - Editar Venta <%=@sale.id %>:</legend>
 	<div class="row-horizontal">
 	  	<%= simple_nested_form_for setup_sales(@sale) , :url => branch_sale_path(@branch, @sale), :html => { :class => "form-horizontal" } do |f| %>
 	  	<%= render :partial => "form", :locals => {:f => f}%>

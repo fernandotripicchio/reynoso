@@ -14,7 +14,7 @@ Profe::Application.routes.draw do
              post :search
           end
           get :cobrar
-          post :efectivizar_cobro
+          put :efectivizar_cobro
       end
       resources :clients
       resources :suppliers do
