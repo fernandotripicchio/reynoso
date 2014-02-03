@@ -36,6 +36,39 @@ class Sale < ActiveRecord::Base
    end
    
    def pagada?
-       return ( self.status == true) ? "Si" : "No"
+       return ( self.pagada == true) ? "Si" : "No"
+   end
+   
+   def monto( branch )
+       items = self.items
+       montos = 0
+       items.each do |item|
+             size = item.size
+             stock =  item.stock.product.get_stock(branch)
+             
+             montos = montos + ( item.size * item.stock.product.price_branch( stock ) )
+       end     
+     
+      return montos
+   end   
+   
+   
+   
+   def pagar(branch)
+      
+      #tipo_movimiento = KindMovement.ingreso[0]
+      description  = "Pago de venta nro #{self.id}"
+      if self.payment == "Efectivo"
+        #Nuevo Pago
+          caja = Account.new
+          caja.new_movement({:value => self.monto( branch ), :in => "Ingreso", :description => description})
+      elsif tipo_pag == "Cuenta Corriente"  
+         #registar pago cuenta corriente
+      else
+         
+      end
+      
+      self.pagada = true       
+      self.save
    end
 end

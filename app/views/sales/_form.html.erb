@@ -21,7 +21,7 @@
     <div class="row-fluid products items-rows">
       <%= si.input :size, :placeholder => "cantidad", :label => "Cantidad:", :input_html => {:value => "1", class: 'input-small pull-left cantidad'} %>    	
       <%= si.association :stock , 
-                         :collection => @branch.stocks.includes(:product).order("products.name").where(" stocks.id = 6681 "), 
+                         :collection => @branch.stocks.includes(:product).order("products.name"), 
                          :label_method => :product_name,
                          :value_method => :id, 
                          :label => "Producto:",
