@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140203151556) do
+ActiveRecord::Schema.define(:version => 20140222221237) do
 
   create_table "account_logs", :force => true do |t|
     t.integer  "account_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20140203151556) do
 
   create_table "balances", :force => true do |t|
     t.date     "balance_date"
-    t.decimal  "size",             :precision => 8, :scale => 2
+    t.decimal  "mount",            :precision => 8, :scale => 2
     t.text     "description"
     t.integer  "kind_of_mov",                                    :default => 1
     t.datetime "created_at",                                                    :null => false
@@ -129,13 +129,15 @@ ActiveRecord::Schema.define(:version => 20140203151556) do
     t.date     "date_sale"
     t.integer  "branch_id"
     t.integer  "client_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.text     "comments"
     t.string   "payment"
-    t.boolean  "status",     :default => true
+    t.boolean  "status",              :default => true
     t.string   "remito"
     t.boolean  "pagada"
+    t.string   "factura_presupuesto"
+    t.string   "tipo_presupuesto"
   end
 
   create_table "stock_logs", :force => true do |t|

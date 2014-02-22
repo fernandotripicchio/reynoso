@@ -19,7 +19,7 @@
     <td>  <%= balance.balance_date %>    </td>
     <td>  <%= balance.show_mov %>	</td>
     <td>  <%= balance.kind_movement.description %>	</td>
-    <td>$  <%= balance.size %>	</td>
+    <td>$  <%= balance.mount %>	</td>
     <td> <%= balance.description %>   </td>
     <td>  <%= link_to 'Editar', edit_branch_balance_path(@branch, balance ), :class => "btn btn-primary"  %> </td>
     <td>  <%= link_to 'Borrar', branch_balance_path(@branch, balance ), method: :delete, data: { confirm: 'Está seguro que desea borrar el movimiento de caja?' }, :class => "btn btn-danger"  %></td>

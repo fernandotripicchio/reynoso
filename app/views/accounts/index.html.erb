@@ -13,8 +13,13 @@
 <tbody>
 <% @accounts.each do | account | %>
   <tr>
-  	<td><%= account.client.name %></td>
-  	<td><%= account.client.address %></td>
+  	<% unless account.client.blank? %>
+	  	<td><%= account.client.name  %></td>
+	  	<td><%= account.client.address %></td>
+  	<% else %>
+		<td></td>
+		<td></td>  	
+  	<% end %>
   	<td> $ <%= account.mount %></td>
     <td><%= link_to 'Editar', edit_branch_account_path(@branch,account) , :class => "btn btn-primary"%></td>
   </tr>

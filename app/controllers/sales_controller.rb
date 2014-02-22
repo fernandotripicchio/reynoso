@@ -35,7 +35,7 @@ class SalesController < ApplicationController
   def new
     @sale = Sale.new
     @sale.date_sale = Time.now.strftime("%d/%m/%Y")
-    @sale.items.build
+    5.times { @sale.items.build }
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @sale }
@@ -51,11 +51,13 @@ class SalesController < ApplicationController
   # POST /sales.json
   def create
     @sale = Sale.new(params[:sale])
-    @sale.date_sale = params[:sale][:date_sale].to_time.strftime("%d/%m/%Y")
+    #@sale.date_sale = params[:sale][:date_sale].to_time.strftime("%d/%m/%Y")
     respond_to do |format|
       if @sale.save
         @sale.decrement_stock(@branch, @current_user)
         @sale.set_status
+        @sale.pagar( @branch ) if @sale.payment == "Efectivo"
+        
         format.html { redirect_to branch_sales_path(@branch), notice: "La venta #{@sale.id} se ha creado exitosamente" }
         format.json { render json: @sale, status: :created, location: @sale }
       else

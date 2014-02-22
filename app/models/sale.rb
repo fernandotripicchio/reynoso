@@ -7,12 +7,15 @@ class Sale < ActiveRecord::Base
 
 
    has_many :items
-   accepts_nested_attributes_for :items, :allow_destroy => true, :reject_if  => :all_blank
+   accepts_nested_attributes_for :items, :allow_destroy => true,  :reject_if => :reject_items
    
-   attr_accessible :date_sale, :branch_id, :client_id,  :payment, :comments, :status, :items_attributes, :remito
+   attr_accessible :date_sale, :branch_id, :client_id,  :payment, :comments, :status, :items_attributes, :remito,:tipo_presupuesto, :factura_presupuesto 
    
-   validate :date_sale, :payment, :client , :presence => true
+   validate :date_sale, :payment, :presence => true
    
+   def reject_items(attributed)
+      attributed['stock_id'].blank?
+   end
    
    def decrement_stock(branch, user)
          items = self.items
@@ -54,21 +57,22 @@ class Sale < ActiveRecord::Base
    
    
    
-   def pagar(branch)
-      
-      #tipo_movimiento = KindMovement.ingreso[0]
-      description  = "Pago de venta nro #{self.id}"
-      if self.payment == "Efectivo"
-        #Nuevo Pago
-          caja = Account.new
-          caja.new_movement({:value => self.monto( branch ), :in => "Ingreso", :description => description})
-      elsif tipo_pag == "Cuenta Corriente"  
-         #registar pago cuenta corriente
-      else
-         
-      end
-      
-      self.pagada = true       
-      self.save
+   def pagar(branch)      
+      monto = self.monto( branch )
+      balance = Balance.new({:mount => monto})
+      balance.branch_id = branch.id
+      balance.description = "Ingreso por venta nro: #{self.id}"
+      balance.client_id = self.client_id unless self.client_id.blank?
+      balance.kind_movement = KindMovement.ingreso[0]
+      balance.balance_date = self.date_sale
+      balance.save
+   end
+   
+   def getFecha
+     if self.new_record?
+       ""
+     else
+       self.date_sale.blank? ? "" : self.date_sale.strftime("%d/%m/%Y")  
+     end
    end
 end

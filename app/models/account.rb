@@ -8,9 +8,18 @@ class Account < ActiveRecord::Base
    
    validates :mount, :presence => true
    
+   def self.new_account(params)
+      mount = params[:mount]
+      comments  = "Venta"
+      acc = Account.new
+      acc.mount = mount
+      acc.comments =  comments
+      acc.save 
+           
+   end
 
    def new_movement(params)
-
+      
       value = params[:value]
       tipo_in = params[:in]
       desc  = params[:description]

@@ -1,24 +1,38 @@
  <fieldset>	
  	<%= f.error_notification %>
-	<%= f.input :date_sale, :as => :ui_date_picker, :label => "Fecha",:input_html => {:value => ""}   %>
+	<%= f.input :date_sale, :as => :ui_date_picker, :label => "Fecha"   %>
     <%= f.input :branch_id, :as => :hidden, :input_html => { :value => @branch.id } %>
-    <%= f.association :client, :collection => @branch.clients.all(order: 'name'), :label => "Cliente:", :include_blank => false %>	
+    <%= f.association :client, :collection => @branch.clients.all(order: 'name'), :label => "Cliente:", :include_blank => true %>	
     <%= f.input :payment, 
-                :collection => [['efectivo', 'Efectivo'], ['tarjeta', 'Tarjeta'], ['cuenta_corriente', 'Cuenta Corriente'] ], 
+                :collection => [['efectivo', 'Efectivo'], ['cuenta_corriente', 'Cuenta Corriente'] ], 
                 :label_method => :last, 
                 :as => :radio_buttons,
                 :label => "Forma de Pago:", 
                 :checked => 'Efectivo' %>
           
-     <div id="remitoField" style="display: none">
-     	     <%= f.input :remito, :label => "Remito", :placeholder => "remito", :input_html => { class: 'input-small'}%>     
-     </div>     
+     <div >
+    <%= f.input :tipo_presupuesto, 
+                :collection => [['ninguno', 'Ninguno'], ['remito', 'Remito'], ['factura', 'Factura']  ], 
+                :label_method => :last, 
+                :as => :radio_buttons,
+                :label => "Presupuesto o Factura:", 
+                :checked => 'Ninguno' , 
+                :input_html => {:class => "remitoFacturaFadio"}%>
+     </div>
+     <div id="rowRemitoFactura" style="display: none">
+     	     <%= f.input :factura_presupuesto, :label => "Presupuesto/Factura:",:placeholder => "presupuesto o factura", :input_html => { class: 'input-medium'}%>     
+     </div>
+          
      <legend>Productos </legend>
      <hr>     
-
+    <div class="row-fluid products">
+    	<%= f.link_to_add "Agregar Producto", :items, :class => "btn btn-success", :data => { :target => "#items_div" } %>
+    	
+    </div>
+    <hr>   
     <%= f.simple_fields_for :items do | si| %>
-
-    <div class="row-fluid products items-rows">
+    
+    <div class="row-fluid products items-rows" id="items_div">
       <%= si.input :size, :placeholder => "cantidad", :label => "Cantidad:", :input_html => {:value => "1", class: 'input-small pull-left cantidad'} %>    	
       <%= si.association :stock , 
                          :collection => @branch.stocks.includes(:product).order("products.name"), 
@@ -31,6 +45,6 @@
       <%= si.link_to_remove "Eliminar" %>      
     </div>  
     <% end %>
-    <p><%= f.link_to_add "Nuevo Producto", :items %></p>    
-	<%= f.input :comments, :as => :text, :placeholder => "Observaciones",:label => "Observaciones:",  :input_html => { class: 'input-xxlarge'  }  %>    
+    <hr>   
+	<%= f.input :comments, :as => :text, :placeholder => "Observaciones",:rows=> 2,:label => "Observaciones:",  :input_html => { class: 'input-xxlarge' , :rows => 3 }  %>    
 </fieldset>   

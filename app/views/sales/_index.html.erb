@@ -27,7 +27,7 @@
 <% disabled = ( sale.pagada?) ? "disabled" : "" %>
   <tr>
   	<td><%= sale.id %></td>
-  	<td><%= sale.date_sale %></td>
+  	<td><%= sale.getFecha %></td>
   	<td><%= ( !sale.client.blank? ) ? sale.client.name : "" %></td>
   	<td><%= sale.payment %></td>
   	<td><%= sale.pagada? %></td>

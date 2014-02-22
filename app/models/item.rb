@@ -4,5 +4,5 @@ class Item < ActiveRecord::Base
    belongs_to :stock
    attr_accessible :size, :sale_id, :product_id, :stock_id
    
-   validates :size, :stock, :presence => true
+   validates :size,  :presence => true
 end
