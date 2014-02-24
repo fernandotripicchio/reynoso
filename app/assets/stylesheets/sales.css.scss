@@ -11,9 +11,41 @@
     width: 90px
   }
 .label {
-width: 10px !important;
-float: left;
-}
+  width: 10px !important;
+  float: left;
+ }
   
 }
 
+.items-rows{
+  .cantidad { 
+      width: 35px;
+   }   
+   .cantidad-items label{
+     width: 70px !important;
+   }
+   
+}
+.cantidad-items {
+  .control{
+     margin-left: 10px !important;
+  } 
+}
+
+.row_cantidad .control-group{
+  width: 50px !important;
+}
+
+.row_cantidad .controls {
+  margin-left: 1px !important;
+  float: left;
+}
+
+.row_producto .controls {
+  margin-left: 2px !important;
+  float: left;
+}
+
+.row_producto select{
+  width: 450px !important;
+}

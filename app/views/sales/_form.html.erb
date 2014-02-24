@@ -1,50 +1,79 @@
  <fieldset>	
  	<%= f.error_notification %>
-	<%= f.input :date_sale, :as => :ui_date_picker, :label => "Fecha"   %>
-    <%= f.input :branch_id, :as => :hidden, :input_html => { :value => @branch.id } %>
-    <%= f.association :client, :collection => @branch.clients.all(order: 'name'), :label => "Cliente:", :include_blank => true %>	
-    <%= f.input :payment, 
-                :collection => [['efectivo', 'Efectivo'], ['cuenta_corriente', 'Cuenta Corriente'] ], 
-                :label_method => :last, 
-                :as => :radio_buttons,
-                :label => "Forma de Pago:", 
-                :checked => 'Efectivo' %>
-          
-     <div >
-    <%= f.input :tipo_presupuesto, 
-                :collection => [['ninguno', 'Ninguno'], ['remito', 'Remito'], ['factura', 'Factura']  ], 
-                :label_method => :last, 
-                :as => :radio_buttons,
-                :label => "Presupuesto o Factura:", 
-                :checked => 'Ninguno' , 
-                :input_html => {:class => "remitoFacturaFadio"}%>
-     </div>
-     <div id="rowRemitoFactura" style="display: none">
-     	     <%= f.input :factura_presupuesto, :label => "Presupuesto/Factura:",:placeholder => "presupuesto o factura", :input_html => { class: 'input-medium'}%>     
-     </div>
-          
-     <legend>Productos </legend>
-     <hr>     
+ 	<%= f.input :branch_id, :as => :hidden, :input_html => { :value => @branch.id } %>
+ 	<div class="row-fluid">
+  	    <table class="table table-condensed">
+ 		   <tr>
+ 			  <td>
+ 	             <%= f.input :date_sale, :as => :ui_date_picker, :label => "Fecha"   %>			
+ 			  </td>
+ 			  <td>
+ 				<%= f.association :client, :collection => @branch.clients.all(order: 'name'), :label => "Cliente:", :include_blank => true, :input_html => {:class => "pull-left"} %>
+ 			  </td>
+ 		    </tr>
+ 		    <tr>
+  			   <td colspan="2">
+			    <%= f.input :payment, 
+				                :collection => [['efectivo', 'Efectivo'], ['cuenta_corriente', 'Cuenta Corriente'] ], 
+				                :label_method => :last, 
+				                :as => :radio_buttons,
+				                :label => "Forma de Pago:", 
+				                :checked => 'Efectivo',
+				                :input_html => {:class => "pull-left"} %>
+				 				
+ 			   </td>
+ 			 <tr>
+ 			   <td >
+			    <%= f.input :tipo_presupuesto, 
+			                :collection => [['ninguno', 'Ninguno'], ['remito', 'Remito'], ['factura', 'Factura']  ], 
+			                :label_method => :last, 
+			                :as => :radio_buttons,
+			                :label => "Presupuesto o Factura:", 
+			                :checked => 'Ninguno' , 
+			                :input_html => {:class => "remitoFacturaFadio"}%>
+   			   </td>
+   			   <td id="rowRemitoFactura" style="display: none">
+   			   	     	     <%= f.input :factura_presupuesto, :label => "Presupuesto/Factura:",:placeholder => "presupuesto o factura", :input_html => { class: 'input-medium'}%>     
+
+   			   </td> 			
+ 		     </tr>
+ 	      </table>
+	</div>
     <div class="row-fluid products">
-    	<%= f.link_to_add "Agregar Producto", :items, :class => "btn btn-success", :data => { :target => "#items_div" } %>
-    	
+    	<%= f.link_to_add "Agregar Producto", :items, :class => "btn btn-success", :data => { :target => "#items_table" } %>
+    	<br />
     </div>
-    <hr>   
-    <%= f.simple_fields_for :items do | si| %>
+    <div class="row-fluid products items-rows" >
+    <table class="table table-striped" id="items_table">
+    	<tr>
+    		<th class="span1"> Cantidad </th>
+    		<th class="span5"> Producto </th>
+    		<th> Eliminar </th>
+    	</tr>
+    	
     
-    <div class="row-fluid products items-rows" id="items_div">
-      <%= si.input :size, :placeholder => "cantidad", :label => "Cantidad:", :input_html => {:value => "1", class: 'input-small pull-left cantidad'} %>    	
-      <%= si.association :stock , 
-                         :collection => @branch.stocks.includes(:product).order("products.name"), 
-                         :label_method => :product_name,
-                         :value_method => :id, 
-                         :label => "Producto:",
-                         :include_blank => true, 
-                         :input_html => { :class => 'selectStock'}
-                          %>
-      <%= si.link_to_remove "Eliminar" %>      
-    </div>  
+    <%= f.simple_fields_for :items do | si| %>
+	     <tr>
+	     	 <td class="row_cantidad">
+	            <%= si.input :size, :placeholder => "cantidad", :label => false, :input_html => {:value => "1", class: 'input-small pull-left cantidad'} %>		
+	     	 </td>
+	     	 <td class="row_producto">
+	         <%= si.association :stock , 
+	                         :collection => @branch.stocks.includes(:product).order("products.name"), 
+	                         :label_method => :product_name,
+	                         :value_method => :id, 
+	                         :label => false,
+	                         :include_blank => true, 
+	                         :input_html => { :class => 'selectStock pull-left'}
+	                          %>
+	     		
+	     	 </td>
+	     	 <td>
+	     			<%= si.link_to_remove "X", :class => "btn btn-danger" %>
+	     	  </td>
+	     </tr>    
     <% end %>
+    </table>   
     <hr>   
 	<%= f.input :comments, :as => :text, :placeholder => "Observaciones",:rows=> 2,:label => "Observaciones:",  :input_html => { class: 'input-xxlarge' , :rows => 3 }  %>    
 </fieldset>   
