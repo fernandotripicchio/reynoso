@@ -4,7 +4,7 @@
 	  	<%= simple_form_for @product , :url => branch_products_path(@branch, @product) ,:html => { :class => "form-horizontal" } do |f| %>
 	  	<%= render :partial => "form", :locals => {:f => f}%>
 	  	<hr />
-	    <%= link_to "Cancelar", branch_products_path(@branch), :class => "btn btn-secundary btn-form"%>
+	    <%= link_to "Cancelar", branch_laboratories_path(@branch), :class => "btn btn-secundary btn-form"%>
 	    <%= f.submit "Guardar", :class => "btn btn-primary btn-form"%>
 	    <% end %>
 	</div>

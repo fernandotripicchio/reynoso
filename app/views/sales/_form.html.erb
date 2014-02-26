@@ -53,7 +53,7 @@
     	
     
     <%= f.simple_fields_for :items do | si| %>
-	     <tr>
+	     <tr  class="fields">
 	     	 <td class="row_cantidad">
 	            <%= si.input :size, :placeholder => "cantidad", :label => false, :input_html => {:value => "1", class: 'input-small pull-left cantidad'} %>		
 	     	 </td>
@@ -73,6 +73,7 @@
 	     	  </td>
 	     </tr>    
     <% end %>
+
     </table>   
     <hr>   
 	<%= f.input :comments, :as => :text, :placeholder => "Observaciones",:rows=> 2,:label => "Observaciones:",  :input_html => { class: 'input-xxlarge' , :rows => 3 }  %>    

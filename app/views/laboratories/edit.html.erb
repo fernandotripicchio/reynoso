@@ -1,9 +1,9 @@
 <div id="edit_form" class="form_project">  	
 	<legend>Editar Laboratorio </legend>
-  	<%= simple_form_for @laboratory ,  :html => { :class => "form-horizontal" } do |f| %>
+  	<%= simple_form_for @laboratory ,  :url => branch_laboratory_path(@branch, @laboratory), :html => { :class => "form-horizontal" } do |f| %>
   	<%= render :partial => "form", :locals => {:f => f}%>
   	<hr />
-    <%= link_to "Cancelar", suppliers_path, :class => "btn btn-secundary btn-form"%>
+    <%= link_to "Cancelar", branch_laboratories_path(@branch), :class => "btn btn-secundary btn-form"%>
     <%= f.submit "Actualizar", :class => "btn btn-primary btn-form"%>
     <% end %>
 </div>
