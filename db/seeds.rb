@@ -6,7 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #Create admin user
+    User.where(:login => "admin").destroy_all
+
     admin = User.where(["login = ?", "admin"])
+    
     if admin.blank?
         user = User.new
         user.login = "admin"
@@ -17,7 +20,12 @@
         user.save
     end
     
-    Branch.create( [{ name: "San Luis"},{ name: "Santa Fe"}])
+    branch = Branch.all
+    
+    if branch.size == 0
+      Branch.create( [{ name: "San Luis"},{ name: "Santa Fe"}])
+    end
+    
     kind_movements = KindMovement.all
     
     if kind_movements.size == 0 

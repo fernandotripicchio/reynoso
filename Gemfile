@@ -4,6 +4,7 @@ gem 'rails', '3.2.12'
 gem 'pg'
 gem 'jquery-rails'
 gem 'authlogic'
+gem 'scrypt'
 gem 'simple_form'
 gem 'bootstrap-wysihtml5-rails'
 gem "rails3-generators"
@@ -17,6 +18,7 @@ gem "watu_table_builder", :require => "table_builder"
 gem 'prawn_rails'
 gem "nested_form"
 
+
 gem 'sass-rails',   '~> 3.2.3'
 gem "kaminari"
 
@@ -24,7 +26,7 @@ group :assets do
       
       gem 'coffee-rails', '~> 3.2.1'
       gem 'uglifier', '>= 1.0.3'
-      gem 'bootstrap-sass'
+      gem 'bootstrap-sass', '2.3.2.0'
 end
 
 group :test, :development do
