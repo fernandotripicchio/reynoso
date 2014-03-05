@@ -48,8 +48,11 @@ class Sale < ActiveRecord::Base
        items.each do |item|
              size = item.size
              stock =  item.stock.product.get_stock(branch)
-             
+             unless item.stock.blank?
              montos = montos + ( item.size * item.stock.product.price_branch( stock ) )
+             else
+               montos = 0
+             end
        end     
      
       return montos
