@@ -51,18 +51,21 @@ class SalesController < ApplicationController
   # POST /sales.json
   def create
     @sale = Sale.new(params[:sale])
-    #@sale.date_sale = params[:sale][:date_sale].to_time.strftime("%d/%m/%Y")
-    respond_to do |format|
-      if @sale.save
-        @sale.decrement_stock(@branch, @current_user)
-        @sale.set_status
-        @sale.pagar( @branch ) if @sale.payment == "Efectivo"
-        
-        format.html { redirect_to branch_sales_path(@branch), notice: "La venta #{@sale.id} se ha creado exitosamente" }
-        format.json { render json: @sale, status: :created, location: @sale }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @sale.errors, status: :unprocessable_entity }
+    Sale.transaction do
+      #@sale.date_sale = params[:sale][:date_sale].to_time.strftime("%d/%m/%Y")
+      respond_to do |format|
+        if @sale.save
+          @sale.decrement_stock(@branch, @current_user)
+          @sale.set_status
+          @sale.pagar( @branch ) if @sale.payment == "Efectivo"
+          @sale.cuenta_corriente( @branch , @current_user) if @sale.payment == "Cuenta Corriente"
+          
+          format.html { redirect_to branch_sales_path(@branch), notice: "La venta #{@sale.id} se ha creado exitosamente" }
+          format.json { render json: @sale, status: :created, location: @sale }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @sale.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

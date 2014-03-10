@@ -1,6 +1,6 @@
 <fieldset>	
 	<%= f.association :client, :collection => @clients, :include_blank => "Seleccione un cliente", :label => "Cliente" %>
-	<%= f.input :mount, :placeholder => "saldo",:label => "Saldo:",  :input_html => { class: 'input-small', readonly: true  }  %>
+	<%= f.input :mount, :placeholder => "saldo",:label => "Saldo Actual:",  :input_html => { class: 'input-small', readonly: true  }  %>
     <%= f.simple_fields_for :account_logs do | si| %>
     
      <div class="row-fluid products">

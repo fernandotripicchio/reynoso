@@ -8,8 +8,11 @@
 	    <th>Cliente</th>
 	    <th>Dirección</th>
 	    <th>Saldo</th>
+	    <th class="span3">&nbsp;</th>
+	    <th class="span1">&nbsp;</th>
 	  </tr>
 </thead>
+
 <tbody>
 <% @accounts.each do | account | %>
   <tr>
@@ -21,7 +24,8 @@
 		<td></td>  	
   	<% end %>
   	<td> $ <%= account.mount %></td>
-    <td><%= link_to 'Editar', edit_branch_account_path(@branch,account) , :class => "btn btn-primary"%></td>
+  	<td><%= link_to 'Nuevo Movimiento', edit_branch_account_path(@branch,account) , :class => "btn btn-primary"%></td>
+    <td><%= link_to 'Movimientos', branch_account_movimientos_path(@branch,account) , :class => "btn btn-primary"%></td>
   </tr>
 <% end %>
 </tbody>

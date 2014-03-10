@@ -6,7 +6,7 @@ class Client < ActiveRecord::Base
    
    attr_accessible :name, :address, :email, :phone, :comments, :province, :zip_code, :branch_id
    
-   validates :name, :presence => true
+   validates :name, :branch_id,:presence => true
    
    
    #TODO Falta filtrar que no tenga account

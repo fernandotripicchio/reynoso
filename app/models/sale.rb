@@ -71,6 +71,20 @@ class Sale < ActiveRecord::Base
       balance.save
    end
    
+   def cuenta_corriente( branch, user)
+     monto = self.monto( branch )
+     account = self.client.account
+     if account.blank?
+        account = Account.new
+        account.client = self.client
+        account.mount = 0
+     end
+     
+       
+     account.new_movement({:value => monto, :in => "Ingreso", :desc => "Venta nro #{self.id}"}, user)
+     account.save
+   end
+   
    def getFecha
      if self.new_record?
        ""

@@ -7,7 +7,9 @@ Profe::Application.routes.draw do
       collection do
         get :pick
       end
-      resources :accounts  
+      resources :accounts do
+        get :movimientos
+      end  
       resources :sales do
           collection do 
              get :reportes

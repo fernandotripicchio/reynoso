@@ -6,7 +6,7 @@ class Account < ActiveRecord::Base
 
    attr_accessible :comments, :client_id, :mount, :account_logs_attributes
    
-   validates :mount, :presence => true
+   validates :mount, :client_id,:presence => true
    
    def self.new_account(params)
       mount = params[:mount]
@@ -18,7 +18,7 @@ class Account < ActiveRecord::Base
            
    end
 
-   def new_movement(params)
+   def new_movement(params, user)
       
       value = params[:value]
       tipo_in = params[:in]
@@ -32,10 +32,12 @@ class Account < ActiveRecord::Base
       
       account_log = AccountLog.new
       account_log.description =  desc
-      account_log.in =  tipo_in
+      account_log.in =  ( tipo_in == "Ingreso" ) 
       account_log.value =  value
+      account_log.user = user.login
       
       self.account_logs << account_log
+      return self
       
    end
    

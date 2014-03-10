@@ -66,7 +66,7 @@ class AccountsController < ApplicationController
   def update
     @account = Account.find(params[:id])
     
-    @account.new_movement(params[:account][:account_logs_attributes].first.second)
+    @account.new_movement(params[:account][:account_logs_attributes].first.second, @current_user.full_name)
     respond_to do |format|
       if @account.save
         format.html { redirect_to branch_accounts_path(@branch), notice: 'Se modifico la cuenta corriente' }
@@ -98,10 +98,15 @@ class AccountsController < ApplicationController
     end    
   end    
   
+  
+  def movimientos
+    @account = Account.find(params[:account_id])
+    @account_logs = @account.account_logs
+  end
   private
   
   def get_data
     @branch = Branch.find(params[:branch_id])
-    @clients = Client.all(order: 'name')
+    @clients = @branch.clients(order: 'name')
   end
 end
