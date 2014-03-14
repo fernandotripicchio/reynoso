@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140222221237) do
+ActiveRecord::Schema.define(:version => 20140311200451) do
 
   create_table "account_logs", :force => true do |t|
     t.integer  "account_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20140222221237) do
     t.datetime "created_at",                                                  :null => false
     t.datetime "updated_at",                                                  :null => false
     t.text     "description"
+    t.string   "recibo"
   end
 
   create_table "accounts", :force => true do |t|

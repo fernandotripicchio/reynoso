@@ -69,6 +69,8 @@ class Sale < ActiveRecord::Base
       balance.kind_movement = KindMovement.ingreso[0]
       balance.balance_date = self.date_sale
       balance.save
+      self.pagada = true
+      self.save
    end
    
    def cuenta_corriente( branch, user)
@@ -85,6 +87,10 @@ class Sale < ActiveRecord::Base
      account.save
    end
    
+   
+   def is_cuenta_corriente?
+     return self.payment == "Cuenta Corriente"
+   end
    def getFecha
      if self.new_record?
        ""

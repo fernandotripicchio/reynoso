@@ -66,7 +66,7 @@ class AccountsController < ApplicationController
   def update
     @account = Account.find(params[:id])
     
-    @account.new_movement(params[:account][:account_logs_attributes].first.second, @current_user.full_name)
+    @account.new_movement(params[:account][:account_logs_attributes].first.second, @current_user)
     respond_to do |format|
       if @account.save
         format.html { redirect_to branch_accounts_path(@branch), notice: 'Se modifico la cuenta corriente' }

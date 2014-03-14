@@ -1,5 +1,7 @@
 <div id="edit_form" class="form_project">  	
-	<legend>Cuenta Corriente </legend>
+	<legend>
+		Cuenta Corriente - Nuevo Movimientos - <%= link_to 'Movimientos', branch_account_movimientos_path(@branch,@account) , :class => "btn btn-secundary"%>
+    </legend>
   	<%= simple_form_for @account ,:url => branch_account_path(@branch) , :html => { :class => "form-horizontal" } do |f| %>
   	<%= render :partial => "form_edit", :locals => {:f => f}%>
   	<hr />

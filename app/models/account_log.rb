@@ -1,5 +1,5 @@
 class AccountLog < ActiveRecord::Base
-   attr_accessible :account_id, :value, :user, :in, :log_date
+   attr_accessible :account_id, :value, :user, :in, :log_date, :recibo
    
    validates :value, :presence => true,  :numericality => true
    

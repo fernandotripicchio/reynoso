@@ -23,6 +23,7 @@ class Account < ActiveRecord::Base
       value = params[:value]
       tipo_in = params[:in]
       desc  = params[:description]
+      recibo  = params[:recibo]
       self.mount = 0 if self.mount.blank?
       if  tipo_in == "Ingreso"
           self.mount  =  self.mount  + value.to_i
@@ -35,6 +36,7 @@ class Account < ActiveRecord::Base
       account_log.in =  ( tipo_in == "Ingreso" ) 
       account_log.value =  value
       account_log.user = user.login
+      account_log.recibo = recibo
       
       self.account_logs << account_log
       return self

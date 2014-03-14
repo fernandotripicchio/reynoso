@@ -104,11 +104,13 @@ class SalesController < ApplicationController
   
   def cobrar
     @sale = Sale.find(params[:sale_id])
+    
+    
   end
   
   def efectivizar_cobro
      @sale = Sale.find(params[:sale_id])
-     @sale.pagar( @branch )
+     #@sale.pagar( @branch )
      redirect_to branch_sales_path(@branch), notice: "Se realizo el pago de la venta nro #{@sale.id}"      
      
   end

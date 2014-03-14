@@ -1,0 +1,26 @@
+<div class="row-fluid">
+	<legend>Cliente: <%=@account.client.name%></legend>
+</div>
+<div class="row-fluid">
+<table class="table table-striped">
+	<thead>
+	  <tr>
+	    <th>Usuario</th>
+	    <th>Recibo</th>
+	    <th>Fecha</th>
+	    <th>Tipo</th>
+	    <th>Monto</th>
+	  </tr>
+</thead>
+<tbody>
+<% @account_logs.each do | account_log | %>
+  <tr>
+  	<td><%=account_log.user%> </td>
+  	<td><%=account_log.recibo%> </td>
+  	<td><%=account_log.created_at.strftime("%d/%m/%y")%>  </td>
+    <td><%=account_log.tipo_movimiento%>                </td>
+    <td>$ <%=account_log.value%>  					    </td>  	
+  </tr>
+<% end %>
+</tbody>
+</table>
