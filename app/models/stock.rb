@@ -4,7 +4,7 @@ class Stock < ActiveRecord::Base
   has_many :stock_logs
   has_many :items
   
-  attr_accessible :size, :discount, :product_id, :branch_id, :profit, :initial_stock, :temporal_size, :minimum
+  attr_accessible :size, :discount, :product_id, :branch_id, :profit, :initial_stock, :temporal_size, :minimum, :id, :kind_movement
   
   validates  :size,:presence => true
   
