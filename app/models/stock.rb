@@ -9,7 +9,9 @@ class Stock < ActiveRecord::Base
   validates  :size,:presence => true
   
   def product_name
-    return self.product.name + " - Precio    $"+  self.product.price_branch(self).to_s
+    unless self.product.blank?
+     return self.product.name + " - Precio    $"+  self.product.price_branch(self).to_s
+    end
   end
   
 end
