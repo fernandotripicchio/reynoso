@@ -196,4 +196,8 @@ class Product < ActiveRecord::Base
        result_products      
   end 
   
+  
+  def delete_from_branch(branch)
+     Stock.delete_all(product_id: self.id, branch_id: branch.id)
+  end
 end

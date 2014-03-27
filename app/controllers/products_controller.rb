@@ -83,10 +83,11 @@ class ProductsController < ApplicationController
   # DELETE /products/1.json
   def destroy
     @product = Product.find(params[:id])
-    @product.destroy
+    @product.delete_from_branch(@branch)
+
 
     respond_to do |format|
-      format.html { redirect_to products_url }
+      format.html { redirect_to branch_products_path(@branch), notice: 'Se ha borrado el producto exitosamente.' }
       format.json { head :no_content }
     end
   end
