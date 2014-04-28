@@ -91,6 +91,16 @@ class LaboratoriesController < ApplicationController
     end
   end
   
+  
+  def actualizar_porcentajes
+     @laboratory = Laboratory.find(params[:laboratory_id]) 
+  end
+  
+  def save_actualizar_porcentajes
+      @laboratory = Laboratory.find(params[:laboratory_id])
+      @laboratory.actualizar_porcentajes(params[:porcentaje])
+      redirect_to branch_laboratories_path(@branch), notice: 'Se actualizaron los precios exitosamente.' 
+  end  
   private
   
   def get_data

@@ -20,11 +20,16 @@ Profe::Application.routes.draw do
       end
       resources :clients
       resources :suppliers do
+         get :actualizar_porcentajes
+         put :save_actualizar_porcentajes          
          collection do 
               post :search
+                
          end
       end
       resources :laboratories do
+         get :actualizar_porcentajes
+         put :save_actualizar_porcentajes             
          collection do 
               post :search
          end

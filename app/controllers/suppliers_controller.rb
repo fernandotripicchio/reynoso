@@ -92,6 +92,17 @@ class SuppliersController < ApplicationController
     end
   end
   
+  def actualizar_porcentajes
+     @supplier = Supplier.find(params[:supplier_id]) 
+  end
+  
+  def save_actualizar_porcentajes
+      @supplier = Supplier.find(params[:supplier_id])
+      @supplier.actualizar_porcentajes(params[:porcentaje])
+      redirect_to branch_suppliers_path(@branch), notice: 'Se actualizaron los precios exitosamente.' 
+  end
+    
+  
   private
   
   def get_data
