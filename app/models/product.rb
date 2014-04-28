@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :name, :price, :iva, :profit, :code, :cost, :description, :laboratory_id
+  attr_accessible :name, :price, :iva, :profit, :code, :cost, :description, :laboratory_id, :due_date
   validates  :name, :cost, :iva, :presence => true
   
   has_many :stocks

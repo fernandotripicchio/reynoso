@@ -17,6 +17,7 @@
   <tr>
     <th>Producto</th>
     <th>Laboratorio</th>
+    <th>Desc.</th>
     <th>Stock Inicial</th>
     <th>Stock Minim0</th>    
     <th>Stock Actual</th>
@@ -28,6 +29,7 @@
   <tr>
   	<td><%= stock.product.name %></td>
   	 <td><%= ( stock.product.laboratory.blank?) ? "" : stock.product.laboratory.name %>	   </td>
+  	 <td>% <%=stock.disccount%></td>
   	<td><%= stock.initial_stock %></td>
     <td><%= stock.minimum %></td>  	
   	<td><%= stock.size %></td>
