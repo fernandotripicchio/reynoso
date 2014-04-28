@@ -162,6 +162,16 @@ class ProductsController < ApplicationController
        end #Transaction      
   end
   
+  
+  def actualizar_porcentajes
+    
+  end
+  
+  def save_actualizar_porcentajes
+      @branch.actualizar_porcentajes(params[:porcentaje])
+      redirect_to branch_products_path(@branch), notice: 'Se actualizaron los precios exitosamente.' 
+  end
+  
   private
   
   def get_data

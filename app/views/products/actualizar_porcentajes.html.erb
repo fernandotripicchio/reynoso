@@ -1,0 +1,19 @@
+<div id="edit_form" class="form_project">  	
+	<legend>Sucursal <%= @branch.name %> - Actualizar Porcentajes </legend>
+  	<%= simple_form_for @branch , :url => save_actualizar_porcentajes_branch_products_path(@branch),:html => { :class => "form-horizontal" } do |f| %>
+<fieldset>
+    <div class="control-group decimal">
+     <label class="decimal required" for="porcentaje_branch">
+    	<abbr title="required">*</abbr> Porcentaje:</label>
+    	<div class="controls">
+    		<input class="numeric decimal required input-small" id="porcentaje_branch" name="porcentaje" placeholder="%" required="required" step="any" type="number">
+    	</div>
+   </div>
+
+	
+</fieldset>   	
+  	<hr />
+    <%= link_to "Cancelar", branch_products_path(@branch), :class => "btn btn-secundary btn-form"%>
+    <%= f.submit "Actualizar", :class => "btn btn-primary btn-form"%>
+    <% end %>
+</div>

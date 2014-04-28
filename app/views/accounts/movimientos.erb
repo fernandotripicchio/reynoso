@@ -1,2 +1,6 @@
-<legend>Sucursal <%= @branch.name %> - Cuentas Corrientes - Movimientos - <%= link_to "Volver", branch_accounts_path(@branch), :class => "btn btn-secundary btn-form"%></legend>
+<legend>
+	Sucursal <%= @branch.name %> - Cuentas Corrientes - Movimientos - <%= link_to "Volver", branch_accounts_path(@branch), :class => "btn btn-secundary btn-form"%>
+	<%= link_to 'Nuevo Movimiento', edit_branch_account_path(@branch,@account) , :class => "btn btn-primary"%>
+	
+</legend>
 <%= render :partial => "movimientos"%>

@@ -200,4 +200,10 @@ class Product < ActiveRecord::Base
   def delete_from_branch(branch)
      Stock.delete_all(product_id: self.id, branch_id: branch.id)
   end
+  
+  def actualizar_porcentaje(porcentaje) 
+    cost = self.cost
+    self.cost = cost + cost*(porcentaje.to_i*0.01)
+    self.save 
+ end
 end

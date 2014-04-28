@@ -32,11 +32,14 @@ Profe::Application.routes.draw do
       resources :products do
          get :edit_attributes
          
+         
          post :save_attributes
          
          
          collection do
            get :actualizar
+           get :actualizar_porcentajes
+           put :save_actualizar_porcentajes           
            post :search
          end
       end
